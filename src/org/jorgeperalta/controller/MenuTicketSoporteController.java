@@ -19,8 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.model.Cliente;
+import org.jorgeperalta.model.TicketSoporte;
 import org.jorgeperalta.system.Main;
 
 /**
@@ -38,18 +41,79 @@ public class MenuTicketSoporteController implements Initializable {
     @FXML
     ComboBox cmbEstatus, cmbClientes;
     @FXML
-    Button btnRegresar;
+    Button btnRegresar, btnGuardar;
+    @FXML
+    TextField tfTicketId;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
+        } else if(event.getSource() == btnGuardar){
+            if(tfTicketId.getText().equals("")){
+                agregarTicket();
+                cargarDatos();
+            }
         }
+    }
+    
+    public void cargarDatos(){
+        tblTickets.setItems(listarTickets());
+        colTicketId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer>("ticketSoporteId"));
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<TicketSoporte, String>("descripcionTicket"));
+        colEstatus.setCellValueFactory(new PropertyValueFactory<TicketSoporte, String>("estatus"));
+        colCliente.setCellValueFactory(new PropertyValueFactory<TicketSoporte, String>("cliente"));
+        colFactura.setCellValueFactory(new PropertyValueFactory<TicketSoporte, String>("facturaId"));
+        tblTickets.getSortOrder().add(colTicketId);
+    }
+    
+    public void cargarDatosEditar(){
+        TicketSoporte ts = (TicketSoporte)tblTickets.getSelectionModel().getSelectedItem();
+        if(ts != null){
+            tfTicketId.setText(Integer.toString(ts.getTicketSoporteId()));
+            taDescripcion.setText(ts.getDescripcionTicket());
+            cmbEstatus.getSelectionModel().select(0);
+            cmbClientes.getSelectionModel().select(obtenerIndexCliente());
+        }
+    }
+    
+    public int obtenerIndexCliente(){
+        int index = 0;
+        for(int i = 0 ; i <= cmbClientes.getItems().size() ; i++){
+            String clienteCmb = cmbClientes.getItems().get(i).toString();
+            String clienteTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItem().getCliente());
+        }
+        return index;
     }
     
     public void cargarCmbEstatus(){
         cmbEstatus.getItems().add("En proceso");
         cmbEstatus.getItems().add("Finalizado");
+    }
+    
+    public ObservableList<TicketSoporte> listarTickets(){
+        ArrayList<TicketSoporte> tickets = new ArrayList<>();
+        
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_ListarTicketsSoportes()";
+            statement = conexion.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                int ticketSoporteId = resultSet.getInt("ticketSoporteId");
+                String descripcion = resultSet.getString("descripcionTicket");
+                String estatus = resultSet.getString("estatus");
+                String cliente = resultSet.getString("cliente");
+                int facturaId = resultSet.getInt("facturaId");
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+        
+        }
+        
+        return FXCollections.observableList(tickets);
     }
     
     public ObservableList<Cliente> listarClientes(){
@@ -90,6 +154,21 @@ public class MenuTicketSoporteController implements Initializable {
         }
         
         return FXCollections.observableList(clientes);
+    }
+    
+    public void agregarTicket(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_AgregarTickketSoporte(?,?,?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setString(1, taDescripcion.getText());
+            statement.setInt(2, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
+            statement.setInt(3, 1);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+        
+        }
     }
     
     
