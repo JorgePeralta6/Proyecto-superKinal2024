@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/resources/Paleta%20de%20colores.png</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/controller/MenuClientesController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/controller/FormClientesController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/view/MenuTicketSoporteView.fxml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/system/Main.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/SuperKinalIN5CV/src/org/jorgeperalta/model/Cliente.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/model/TicketSoporte.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuTicketSoporteController.java</file>
         </group>
     </open-files>
 </project-private>
