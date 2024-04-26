@@ -120,7 +120,7 @@ create table Facturas (
 create table TicketSoporte (
 	ticketSoporteId int not null auto_increment,
     descripcionTicket varchar (250) not null,
-    estatuts varchar (30) not null,
+    estatus varchar (30) not null,
     clienteId int not null,
     facturaId int not null,
     primary key PK_ticketSoporteId (ticketSoporteId),

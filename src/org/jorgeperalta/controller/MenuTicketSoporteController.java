@@ -121,7 +121,7 @@ public class MenuTicketSoporteController implements Initializable {
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarTicketsSoportes()";
+            String sql = "call sp_listarTicketSoporte()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
@@ -198,7 +198,7 @@ public class MenuTicketSoporteController implements Initializable {
     public void agregarTicket(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarTickketSoporte(?,?,?)";
+            String sql = "call sp_agregarTicketSoporte(?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
