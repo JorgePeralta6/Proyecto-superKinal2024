@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="SuperKinalIN5CV.jar" size="1034341" download="eager" />
-=======
-    <jar href="SuperKinalIN5CV.jar" size="1034379" download="eager" />
->>>>>>> 287a6acbf23133688818f6042e0a5ea309778527
+    <jar href="SuperKinalIN5CV.jar" size="1271013" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.12.jar" size="2020431" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SuperKinalIN5CV" >

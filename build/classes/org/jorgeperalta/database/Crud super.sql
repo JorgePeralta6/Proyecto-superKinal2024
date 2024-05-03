@@ -66,6 +66,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+call sp_agregarCargo('Supervisor', 'Supervisa la actividad de los empeleados');
+
 DELIMITER $$
 create procedure sp_listarCargo()
 BEGIN
@@ -437,6 +439,8 @@ DELIMITER $$
 		END $$
 DELIMITER ;
 
+call sp_AgregarEmpleados('Peralta', 'Puto', 3420.90, '8:00:00', '17:00:00', 1, null);
+
 DELIMITER $$
 	create procedure sp_ListarEmpleados ()
 		begin 
@@ -503,6 +507,8 @@ DELIMITER $$
 		END $$
 DELIMITER ;
 
+call sp_AgregarFacturas('2023-04-23', '8:00:00', 45.90, 1, 1);
+
 DELIMITER $$
 	create procedure sp_ListarFacturas ()
 		BEGIN 
@@ -559,10 +565,13 @@ DELIMITER ;
 DELIMITER $$
 create procedure sp_agregarTicketSoporte(in descTick varchar (250), in cliId int, in facId int)
 BEGIN 
-	insert into TicketSoporte (descripcionTicket, estatuts , clienteId , facturaId)
+	insert into TicketSoporte (descripcionTicket, estatus , clienteId , facturaId)
 		values (descTick, 'Recien Creado', cliId, facId);
+	
 END $$
 DELIMITER ;
+
+call sp_agregarTicketSoporte('Problema del wifi', 1, 1);
 
 DELIMITER $$
 create procedure sp_listarTicketSoporte()
@@ -573,6 +582,8 @@ BEGIN
 	join Clientes C on TS.clienteId = C.clienteId;
 END $$
 DELIMITER ;
+
+select * from TicketSoporte;
 
 DELIMITER $$
 create procedure sp_eliminarTicketSoporte(in tickSopId int)
@@ -588,7 +599,7 @@ create procedure sp_buscarTicketSoporte(in tickSopId int)
 BEGIN 
 	select
 		TicketSoporte.descripcionTicket,
-		TicketSoporte.estatuts,
+		TicketSoporte.estatus,
 		TicketSoporte.clienteId,
 		TicketSoporte.facturaId
 			from TicketSoporte
@@ -602,7 +613,7 @@ BEGIN
 	update TicketSoporte
 		set	
 			descripcionTicket = descTick,
-			estatuts = est,
+			estatus = est,
 			clienteId = cliId,
 			facturaId = facId
 			where ticketSoporteId = tickSopId;
