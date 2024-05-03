@@ -72,11 +72,13 @@ DELIMITER $$
 create procedure sp_listarCargo()
 BEGIN
 	select
+		Cargos.cargoId,
 		Cargos.nombreCargo,
 		Cargos.descripcionCargo
 		from Cargos;
 END $$
 DELIMITER ;
+call sp_listarCargo();
 
 DELIMITER $$
 create procedure sp_eliminarCargo(carId INT)
@@ -91,6 +93,7 @@ DELIMITER $$
 create procedure sp_buscarCargo(carId INT)
 BEGIN
 	select
+		Cargos.cargoId,
 		Cargos.nombreCargo,
 		Cargos.descripcionCargo
 		from Cargos

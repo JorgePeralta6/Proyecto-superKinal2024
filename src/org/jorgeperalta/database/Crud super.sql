@@ -72,6 +72,7 @@ DELIMITER $$
 create procedure sp_listarCargo()
 BEGIN
 	select
+		Cargos.cargoId,
 		Cargos.nombreCargo,
 		Cargos.descripcionCargo
 		from Cargos;
@@ -92,6 +93,7 @@ DELIMITER $$
 create procedure sp_buscarCargo(carId INT)
 BEGIN
 	select
+		Cargos.cargoId,
 		Cargos.nombreCargo,
 		Cargos.descripcionCargo
 		from Cargos
