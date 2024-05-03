@@ -77,6 +77,7 @@ BEGIN
 		from Cargos;
 END $$
 DELIMITER ;
+call sp_listarCargo();
 
 DELIMITER $$
 create procedure sp_eliminarCargo(carId INT)
