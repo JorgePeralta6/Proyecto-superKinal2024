@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.view.FormDistribuidoresController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FormDistribuidoresView.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="366.0" layoutY="282.0" prefHeight="111.0" prefWidth="100.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #FFFEC8; -fx-background-radius: 15;" text="Guardar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #FFFEC8; -fx-background-radius: 15;" text="Cancelar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <TextField fx:id="tfDistribuidorId" editable="false" layoutX="14.0" layoutY="135.0" prefHeight="32.0" prefWidth="256.0" />
+      <TextField fx:id="tfNombreDistribuidor" layoutX="14.0" layoutY="214.0" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="256.0" promptText="NombreDistribuidor" />
+      <TextField fx:id="tfDireccionDistribuidor" layoutX="14.0" layoutY="288.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="256.0" promptText="DireccionDistribuidor" />
+      <TextField fx:id="tfNitDistribuidor" layoutX="14.0" layoutY="381.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="256.0" promptText="NitDistribuidor" />
+      <TextField fx:id="tfTelefonoDistribuidor" layoutX="14.0" layoutY="457.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="256.0" promptText="TelefonoDistribuidor" />
+      <TextField fx:id="tfWeb" layoutX="14.0" layoutY="521.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="256.0" promptText="Web" />
+   </children>
+</AnchorPane>

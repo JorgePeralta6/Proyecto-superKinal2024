@@ -24,8 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.jorgeperalta.dao.Conexion;
-import org.jorgeperalta.dto.CargoDTO;
-import org.jorgeperalta.model.Cargo;
+import org.jorgeperalta.dto.DistribuidorDTO;
+import org.jorgeperalta.model.Distribuidor;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.utils.SuperKinalAlert;
 
@@ -34,79 +34,87 @@ import org.jorgeperalta.utils.SuperKinalAlert;
  *
  * @author Usuario
  */
-public class MenuCargosController implements Initializable {
+public class MenuDistribuidoresController implements Initializable {
     private Main stage;
     
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
-    
+
     @FXML
-    TableView tblCargos;
+    TableView tblDistribuidores;
     @FXML
-    TableColumn colCargoId, colNombreCargo, colDescripcionCargo;
+    TableColumn colDistribuidorId, colNombreDistribuidor, colDireccionDistribuidor, colNitDistribuidor, colTelefonoDistribuidor, colWeb;
     @FXML
     Button btnAgregar, btnEditar, btnRegresar, btnEliminar, btnBuscar;
     @FXML
-    TextField tfCargoId;
-    
-    
+    TextField tfDistribuidorId;
+            
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarLista();
-    }    
+    }  
     
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnAgregar){
-            stage.formCargosView(1);
+            stage.formDistribuidoresView(1);
         } else if (event.getSource() == btnEditar){
-            CargoDTO.getCargoDTO().setCargo((Cargo)tblCargos.getSelectionModel().getSelectedItem());
-            stage.formCargosView(2);
+            DistribuidorDTO.getDistribuidorDTO().setDistribuidor((Distribuidor)tblDistribuidores.getSelectionModel().getSelectedItem());
+            stage.formDistribuidoresView(2);
         } else if (event.getSource() == btnRegresar){
             stage.menuPrincipalView();
         } else if(event.getSource() == btnEliminar){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
-                int carId = ((Cargo)tblCargos.getSelectionModel().getSelectedItem()).getCargoId();
-                eliminarCargo(carId);
+                int disId = ((Distribuidor)tblDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorIdId();
+                eliminarDistribuidor(disId);
                 cargarLista();
             }
         } else if(event.getSource() == btnBuscar){
-            tblCargos.getItems().clear();
-            if(tfCargoId.getText().equals("")){
+            tblDistribuidores.getItems().clear();
+            if(tfDistribuidorId.getText().equals("")){
                 cargarLista();
             }else{
-                tblCargos.getItems().add(buscarCargo());
-                colCargoId.setCellValueFactory(new PropertyValueFactory<Cargo, Integer>("cargoId"));
-                colNombreCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("nombreCargo"));
-                colDescripcionCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("descripcionCargo"));                
+                tblDistribuidores.getItems().add(buscarCliente());
+                colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer>("distribuidorId"));
+                colNombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nombreDistribuidor"));
+                colDireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("direccionDistribuidor"));
+                colNitDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nitDistribuidor"));
+                colTelefonoDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("telefonoDistribuidor"));
+                colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("web"));                
             }
         }
     }
     
     public void cargarLista(){
-        tblCargos.setItems(listarCargos());
-        colCargoId.setCellValueFactory(new PropertyValueFactory<Cargo, Integer>("cargoId"));
-        colNombreCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("nombreCargo"));
-        colDescripcionCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("descripcionCargo"));
+        tblDistribuidores.getItems().add(buscarCliente());
+        colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer>("distribuidorId"));
+        colNombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nombreDistribuidor"));
+        colDireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("direccionDistribuidor"));
+        colNitDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nitDistribuidor"));
+        colTelefonoDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("telefonoDistribuidor"));
+        colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("web"));   
     }
     
-    public ObservableList<Cargo> listarCargos(){
-        ArrayList<Cargo> cargos = new ArrayList<>();
+    public ObservableList<Distribuidor> listarDistribuidor(){
+        ArrayList<Distribuidor> distribuidores = new ArrayList<>();
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarCargo()";
+            String sql = "call sp_listarDistribuidor()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
             while(resultSet.next()){
-                int cargoId = resultSet.getInt("cargoId");
-                String nombreCargo = resultSet.getString("nombreCargo");
-                String descripcionCargo = resultSet.getString("descripcionCargo");
+                int distribuidorId = resultSet.getInt("distribuidorId");
+                String nombreDistribuidor = resultSet.getString("nombreDistribuidor");
+                String direccionDistribuidor = resultSet.getString("direccionDistribuidor");
+                String nitDistribuidor = resultSet.getString("nitDistribuidor");
+                String telefonoDistribuidor = resultSet.getString("telefonoDistribuidor");
+                String web = resultSet.getString("web");
                 
-                cargos.add(new Cargo(cargoId, nombreCargo, descripcionCargo));
+                distribuidores.add(new Distribuidor(distribuidorId, nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -125,15 +133,15 @@ public class MenuCargosController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        return FXCollections.observableList(cargos);
+        return FXCollections.observableList(distribuidores);
     }
     
-    public void eliminarCargo(int carId){
+    public void eliminarDistribuidor(int disId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_eliminarCargo(?)";
+            String sql = "call sp_eliminarDistribuidor(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, carId);
+            statement.setInt(1, disId);
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -152,21 +160,24 @@ public class MenuCargosController implements Initializable {
         }
     }
     
-    public Cargo buscarCargo(){
-        Cargo cargo = null;
+    public Distribuidor buscarCliente(){
+        Distribuidor distribuidor = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_buscarCargo(?)";
+            String sql = "call sp_buscarDistribuidor(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfCargoId.getText()));
+            statement.setInt(1, Integer.parseInt(tfDistribuidorId.getText()));
             resultSet = statement.executeQuery();
             
             if(resultSet.next()){
-                int cargoId = resultSet.getInt("cargoId");
-                String nombreCargo = resultSet.getString("nombreCargo");
-                String descripcionCargo = resultSet.getString("descripcionCargo");
+                int distribuidorId = resultSet.getInt("distribuidorId");
+                String nombreDistribuidor = resultSet.getString("nombreDistribuidor");
+                String direccionDistribuidor = resultSet.getString("direccionDistribuidor");
+                String nitDistribuidor = resultSet.getString("nitDistribuidor");
+                String telefonoDistribuidor = resultSet.getString("telefonoDistribuidor");
+                String web = resultSet.getString("web");
                 
-                cargo = (new Cargo(cargoId, nombreCargo, descripcionCargo));
+                distribuidor = (new Distribuidor(distribuidorId, nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web));
                 
             }
             
@@ -187,7 +198,7 @@ public class MenuCargosController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        return cargo;
+        return distribuidor;
     }
 
     public Main getStage() {
@@ -197,5 +208,4 @@ public class MenuCargosController implements Initializable {
     public void setStage(Main stage) {
         this.stage = stage;
     }
-    
 }
