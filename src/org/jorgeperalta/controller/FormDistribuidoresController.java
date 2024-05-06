@@ -22,11 +22,7 @@ import org.jorgeperalta.model.Distribuidor;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.utils.SuperKinalAlert;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
+
 public class FormDistribuidoresController implements Initializable {
     private Main stage;
     private int op;
