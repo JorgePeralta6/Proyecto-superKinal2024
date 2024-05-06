@@ -15,8 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.jorgeperalta.controller.FormCargosController;
 import org.jorgeperalta.controller.FormClientesController;
+import org.jorgeperalta.controller.FormDistribuidoresController;
 import org.jorgeperalta.controller.MenuCargosController;
 import org.jorgeperalta.controller.MenuClientesController;
+import org.jorgeperalta.controller.MenuDistribuidoresController;
 import org.jorgeperalta.controller.MenuPrincipalController;
 import org.jorgeperalta.controller.MenuTicketSoporteController;
 
@@ -98,11 +100,30 @@ public class Main extends Application {
         }
     }
     
-        public void formCargosView(int op){
+    public void formCargosView(int op){
         try{
             FormCargosController formCargosView = (FormCargosController)switchScene("FormCargosView.fxml", 500, 600);
             formCargosView.setOp(op);
             formCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidorView = (MenuDistribuidoresController)switchScene("MenuDistribuidoresView.fxml", 1200, 750);
+            menuDistribuidorView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formDistribuidoresView(int op){
+        try{
+            FormDistribuidoresController formDistribuidoresView = (FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml", 500, 600);
+            formDistribuidoresView.setOp(op);
+            formDistribuidoresView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

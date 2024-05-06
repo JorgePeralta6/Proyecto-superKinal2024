@@ -67,7 +67,7 @@ public class FormDistribuidoresController implements Initializable {
                     stage.menuDistribuidoresView();
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfNombre.requestFocus();
+                    tfNombreDistribuidor.requestFocus();
                     return;
                 }
             }else if(op == 2){

@@ -67,7 +67,7 @@ public class MenuDistribuidoresController implements Initializable {
             stage.menuPrincipalView();
         } else if(event.getSource() == btnEliminar){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
-                int disId = ((Distribuidor)tblDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorIdId();
+                int disId = ((Distribuidor)tblDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorId();
                 eliminarDistribuidor(disId);
                 cargarLista();
             }
