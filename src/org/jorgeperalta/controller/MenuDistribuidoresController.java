@@ -88,7 +88,7 @@ public class MenuDistribuidoresController implements Initializable {
     }
     
     public void cargarLista(){
-        tblDistribuidores.getItems().add(buscarDistribuidor());
+        tblDistribuidores.setItems(listarDistribuidor());
         colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer>("distribuidorId"));
         colNombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nombreDistribuidor"));
         colDireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("direccionDistribuidor"));

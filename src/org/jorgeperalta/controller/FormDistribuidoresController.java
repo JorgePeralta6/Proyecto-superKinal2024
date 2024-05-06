@@ -59,7 +59,7 @@ public class FormDistribuidoresController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
-            stage.menuClientesView();
+            stage.menuDistribuidoresView();
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
                 if(!tfNombreDistribuidor.getText().equals("") && !tfDireccionDistribuidor.getText().equals("") && !tfNitDistribuidor.getText().equals("") && !tfTelefonoDistribuidor.getText().equals("")){
