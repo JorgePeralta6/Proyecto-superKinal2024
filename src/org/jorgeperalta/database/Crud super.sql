@@ -214,6 +214,7 @@ create procedure sp_agregarDistribuidor(in nomD varchar(30), in dirD varchar(200
 			(nomD, dirD, nitD, telD, web);
     END $$
 DELIMITER ;
+call sp_agregarDistribuidor ('Henry', 'Suchitepequez','23354216','5432-1223','facebook.com');
 
 DELIMITER $$
 create procedure sp_listarDistribuidor()
@@ -228,6 +229,7 @@ create procedure sp_listarDistribuidor()
 				from Distribuidores D;
     END $$
 DELIMITER ;
+call sp_listarDistribuidor();
 
 DELIMITER $$
 create procedure sp_buscarDistribuidor(in disId int)
