@@ -76,7 +76,7 @@ public class MenuDistribuidoresController implements Initializable {
             if(tfDistribuidorId.getText().equals("")){
                 cargarLista();
             }else{
-                tblDistribuidores.getItems().add(buscarCliente());
+                tblDistribuidores.getItems().add(buscarDistribuidor());
                 colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer>("distribuidorId"));
                 colNombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nombreDistribuidor"));
                 colDireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("direccionDistribuidor"));
@@ -88,7 +88,7 @@ public class MenuDistribuidoresController implements Initializable {
     }
     
     public void cargarLista(){
-        tblDistribuidores.getItems().add(buscarCliente());
+        tblDistribuidores.getItems().add(buscarDistribuidor());
         colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer>("distribuidorId"));
         colNombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("nombreDistribuidor"));
         colDireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidor, String>("direccionDistribuidor"));
@@ -160,7 +160,7 @@ public class MenuDistribuidoresController implements Initializable {
         }
     }
     
-    public Distribuidor buscarCliente(){
+    public Distribuidor buscarDistribuidor(){
         Distribuidor distribuidor = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
