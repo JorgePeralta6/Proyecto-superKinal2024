@@ -165,23 +165,25 @@ create procedure sp_agregarCategoriaProducto(in nombC varchar(30), descC varchar
 			(nombC, descC);
     END $$
 DELIMITER ;
+call sp_agregarCategoriaProducto('Aventuras en la Naturaleza','Una gran aventura adentrandoze a la naturaleza');
 
 DELIMITER $$
 create procedure sp_listarCategoriaProducto()
 	BEGIN
 		select
-			C.categoriaProductoId,
+			C.categoriaProductosId,
             C.nombreCategoria,
             C.descripcionCategoria
 				from CategoriaProductos C;
     END $$
 DELIMITER ;
+call sp_listarCategoriaProducto();
 
 DELIMITER $$
 create procedure sp_buscarCategoriaProducto(in catPId int)
 	BEGIN
 		select * from CategoriaProductos
-			where categoriaProductoId = catPId;
+			where categoriaProductosId = catPId;
     END $$
 DELIMITER ;
 
@@ -190,7 +192,7 @@ create procedure sp_eliminarCategoriaProducto(in catPId int)
 	BEGIN
 		delete
 			from CategoriaProductos
-				where categoriaProductoId = catPId;
+				where categoriaProductosId = catPId;
     END $$
 DELIMITER ;
 
@@ -201,7 +203,7 @@ create procedure sp_editarCategoriaProducto(in catPId int, in nombC varchar(30),
 			set
 				nombreCategoria = nombC,
                 descripcionCategoria = descC
-					where categoriaProductoId = catPId;
+					where categoriaProductosId = catPId;
     END $$
 DELIMITER ;
 -- CategoriaProductos

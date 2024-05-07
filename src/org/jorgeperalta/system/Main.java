@@ -14,9 +14,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.jorgeperalta.controller.FormCargosController;
+import org.jorgeperalta.controller.FormCategoriaProductosController;
 import org.jorgeperalta.controller.FormClientesController;
 import org.jorgeperalta.controller.FormDistribuidoresController;
 import org.jorgeperalta.controller.MenuCargosController;
+import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
 import org.jorgeperalta.controller.MenuDistribuidoresController;
 import org.jorgeperalta.controller.MenuPrincipalController;
@@ -128,7 +130,25 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
-
+    
+    public void menuCategoriaProductosView(){
+        try{
+            MenuCategoriaProductosController menuCategoriaProductoView = (MenuCategoriaProductosController)switchScene("MenuCategoriaProductosView.fxml", 1200, 750);
+            menuCategoriaProductoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCategoriaProuctosView(int op){
+        try{
+            FormCategoriaProductosController formCategoriaProductosView = (FormCategoriaProductosController)switchScene("FormCategoriaProductosView.fxml", 500, 600);
+            formCategoriaProductosView.setOp(op);
+            formCategoriaProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

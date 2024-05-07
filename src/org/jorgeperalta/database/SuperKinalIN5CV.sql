@@ -31,7 +31,7 @@ create table Compras(
 create table CategoriaProductos(
 	categoriaProductosId int not null auto_increment,
     nombreCategoria varchar (30) not null,
-    decripcionCategoria varchar (100) not null,
+    descripcionCategoria varchar (100) not null,
     primary key PK_categoriaProductosId (categoriaProductosId)
 );
  
