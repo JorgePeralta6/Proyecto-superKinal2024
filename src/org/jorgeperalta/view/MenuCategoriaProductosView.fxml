@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.MenuCategoriaProductosController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.MenuCategoriaProductosController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +22,7 @@
         <columns>
           <TableColumn fx:id="colCategoriaProductoId" prefWidth="128.0" text="CategoriaProductoId" />
           <TableColumn fx:id="colNombreCategoria" prefWidth="281.0" text="NombreCategoria" />
-            <TableColumn fx:id="colDecripcionCategoria" prefWidth="286.0" text="DecripcionCategoria" />
+            <TableColumn fx:id="colDescripcionCategoria" prefWidth="286.0" text="DescripcionCategoria" />
         </columns>
       </TableView>
       <GridPane layoutX="794.0" layoutY="327.0" prefHeight="249.0" prefWidth="288.0">

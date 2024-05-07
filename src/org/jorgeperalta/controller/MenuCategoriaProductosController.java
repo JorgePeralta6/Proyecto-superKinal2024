@@ -44,11 +44,11 @@ public class MenuCategoriaProductosController implements Initializable {
     @FXML
     TableView tblCategoriaProductos;
     @FXML
-    TableColumn colCategoriaProductoId, colNombreCategoria, colDecripcionCategoria;
+    TableColumn colCategoriaProductoId, colNombreCategoria, colDescripcionCategoria;
     @FXML
     Button btnAgregar, btnEditar, btnRegresar, btnEliminar, btnBuscar;
     @FXML
-    TextField tfCategoriaProductoId;
+    TextField tfCategoriaProductosId;
     
     
     
@@ -74,22 +74,22 @@ public class MenuCategoriaProductosController implements Initializable {
             }
         } else if(event.getSource() == btnBuscar){
             tblCategoriaProductos.getItems().clear();
-            if(tfCategoriaProductoId.getText().equals("")){
+            if(tfCategoriaProductosId.getText().equals("")){
                 cargarLista();
             }else{
                 tblCategoriaProductos.getItems().add(buscarCategoriaProducto());
-                colCategoriaProductoId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductiId"));
+                colCategoriaProductoId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductosId"));
                 colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
-                colDecripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));                
+                colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));                
             }
         }
     }
     
     public void cargarLista(){
         tblCategoriaProductos.setItems(listarCategoriaProductos());
-        colCategoriaProductoId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductoId"));
+        colCategoriaProductoId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductosId"));
         colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
-        colDecripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria")); 
+        colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria")); 
     }
     
     public ObservableList<CategoriaProducto> listarCategoriaProductos(){
@@ -102,7 +102,7 @@ public class MenuCategoriaProductosController implements Initializable {
             resultSet = statement.executeQuery();
             
             while(resultSet.next()){
-                int categoriaProductosId = resultSet.getInt("categoriaProductoId");
+                int categoriaProductosId = resultSet.getInt("categoriaProductosId");
                 String nombreCategoria = resultSet.getString("nombreCategoria");
                 String descripcionCategoria = resultSet.getString("descripcionCategoria");
                 
@@ -158,7 +158,7 @@ public class MenuCategoriaProductosController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_buscarCategoriaProducto(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfCategoriaProductoId.getText()));
+            statement.setInt(1, Integer.parseInt(tfCategoriaProductosId.getText()));
             resultSet = statement.executeQuery();
             
             if(resultSet.next()){

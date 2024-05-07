@@ -12,15 +12,15 @@ package org.jorgeperalta.model;
 public class CategoriaProducto {
     private int categoriaProductosId;
     private String nombreCategoria;
-    private String decripcionCategoria;
+    private String descripcionCategoria;
 
     public CategoriaProducto() {
     }
 
-    public CategoriaProducto(int categoriaProductosId, String nombreCategoria, String decripcionCategoria) {
+    public CategoriaProducto(int categoriaProductosId, String nombreCategoria, String descripcionCategoria) {
         this.categoriaProductosId = categoriaProductosId;
         this.nombreCategoria = nombreCategoria;
-        this.decripcionCategoria = decripcionCategoria;
+        this.descripcionCategoria = descripcionCategoria;
     }
 
     public int getCategoriaProductosId() {
@@ -39,17 +39,17 @@ public class CategoriaProducto {
         this.nombreCategoria = nombreCategoria;
     }
 
-    public String getDecripcionCategoria() {
-        return decripcionCategoria;
+    public String getDescripcionCategoria() {
+        return descripcionCategoria;
     }
 
-    public void setDecripcionCategoria(String decripcionCategoria) {
-        this.decripcionCategoria = decripcionCategoria;
+    public void setDecripcionCategoria(String descripcionCategoria) {
+        this.descripcionCategoria = descripcionCategoria;
     }
 
     @Override
     public String toString() {
-        return "CategoriaProducto{" + "categoriaProductosId=" + categoriaProductosId + ", nombreCategoria=" + nombreCategoria + ", decripcionCategoria=" + decripcionCategoria + '}';
+        return "CategoriaProducto{" + "categoriaProductosId=" + categoriaProductosId + ", nombreCategoria=" + nombreCategoria + ", descripcionCategoria=" + descripcionCategoria + '}';
     }
     
     
