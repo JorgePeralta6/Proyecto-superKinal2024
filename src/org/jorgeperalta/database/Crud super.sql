@@ -182,10 +182,15 @@ call sp_listarCategoriaProducto();
 DELIMITER $$
 create procedure sp_buscarCategoriaProducto(in catPId int)
 	BEGIN
-		select * from CategoriaProductos
+		select
+			CategoriaProductos.categoriaProductosId,
+            CategoriaProductos.nombreCategoria,
+            CategoriaProductos.descripcionCategoria
+			from CategoriaProductos
 			where categoriaProductosId = catPId;
     END $$
 DELIMITER ;
+call sp_buscarCategoriaProducto(1);
 
 DELIMITER $$
 create procedure sp_eliminarCategoriaProducto(in catPId int)
@@ -206,6 +211,7 @@ create procedure sp_editarCategoriaProducto(in catPId int, in nombC varchar(30),
 					where categoriaProductosId = catPId;
     END $$
 DELIMITER ;
+
 -- CategoriaProductos
 
 -- Distribuidor

@@ -102,11 +102,11 @@ public class MenuCategoriaProductosController implements Initializable {
             resultSet = statement.executeQuery();
             
             while(resultSet.next()){
-                int categoriaProductoId = resultSet.getInt("categoriaProductoId");
+                int categoriaProductosId = resultSet.getInt("categoriaProductoId");
                 String nombreCategoria = resultSet.getString("nombreCategoria");
                 String descripcionCategoria = resultSet.getString("descripcionCategoria");
                 
-                categoriaProductos.add(new CategoriaProducto(categoriaProductoId, nombreCategoria, descripcionCategoria));
+                categoriaProductos.add(new CategoriaProducto(categoriaProductosId, nombreCategoria, descripcionCategoria));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -162,11 +162,11 @@ public class MenuCategoriaProductosController implements Initializable {
             resultSet = statement.executeQuery();
             
             if(resultSet.next()){
-                int categoriaProductoId = resultSet.getInt("categoriaProductoId");
+                int categoriaProductosId = resultSet.getInt("categoriaProductoId");
                 String nombreCategoria = resultSet.getString("nombreCategoria");
                 String descripcionCategoria = resultSet.getString("descripcionCategoria");
                 
-                categoriaProducto = (new CategoriaProducto(categoriaProductoId, nombreCategoria, descripcionCategoria));
+                categoriaProducto = (new CategoriaProducto(categoriaProductosId, nombreCategoria, descripcionCategoria));
                 
             }
             
