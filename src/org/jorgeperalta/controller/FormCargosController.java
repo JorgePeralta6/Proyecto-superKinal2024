@@ -120,7 +120,7 @@ private Main stage;
     public void editarCargo(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarCargo(?,?)";
+            String sql = "call sp_editarCargo(?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfCargoId.getText()));
             statement.setString(2, tfNombreCargo.getText());
