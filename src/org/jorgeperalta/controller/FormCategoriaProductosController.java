@@ -38,7 +38,7 @@ public class FormCategoriaProductosController implements Initializable {
     @FXML
     Button btnGuardar, btnCancelar;
     @FXML
-    TextField tfCategoriaProductoId, tfNombreCategoria, tfDecripcionCategoria;
+    TextField tfCategoriaProductoId, tfNombreCategoria, tfDescripcionCategoria;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,7 +62,7 @@ public class FormCategoriaProductosController implements Initializable {
             stage.menuCategoriaProductosView();
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
-                if(!tfNombreCategoria.getText().equals("") && !tfDecripcionCategoria.getText().equals("")){
+                if(!tfNombreCategoria.getText().equals("") && !tfDescripcionCategoria.getText().equals("")){
                     agregarCategoriaProducto();
                     stage.menuCategoriaProductosView();
                 }else{
@@ -71,7 +71,7 @@ public class FormCategoriaProductosController implements Initializable {
                     return;
                 }
             }else if(op == 2){
-                if(!tfNombreCategoria.getText().equals("") && !tfDecripcionCategoria.getText().equals("")){
+                if(!tfNombreCategoria.getText().equals("") && !tfDescripcionCategoria.getText().equals("")){
                     if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
                         editarCategoriaProducto();
                         CategoriaProductoDTO.getCategoriaProductoDTO().setCategoriaProducto(null);
@@ -90,7 +90,7 @@ public class FormCategoriaProductosController implements Initializable {
     public void cargarDatos(CategoriaProducto categoriaProducto){
         tfCategoriaProductoId.setText(Integer.toString(categoriaProducto.getCategoriaProductosId()));
         tfNombreCategoria.setText(categoriaProducto.getNombreCategoria());
-        tfDecripcionCategoria.setText(categoriaProducto.getDecripcionCategoria());       
+        tfDescripcionCategoria.setText(categoriaProducto.getDescripcionCategoria());       
     }
     
     public void agregarCategoriaProducto(){
@@ -99,7 +99,7 @@ public class FormCategoriaProductosController implements Initializable {
             String sql = "call sp_agregarCategoriaProducto(?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfNombreCategoria.getText());
-            statement.setString(2, tfDecripcionCategoria.getText());
+            statement.setString(2, tfDescripcionCategoria.getText());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -120,11 +120,11 @@ public class FormCategoriaProductosController implements Initializable {
     public void editarCategoriaProducto(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarCategoriaProducto(?,?)";
+            String sql = "call sp_editarCategoriaProducto(?,?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfCategoriaProductoId.getText()));
             statement.setString(2, tfNombreCategoria.getText());
-            statement.setString(3, tfDecripcionCategoria.getText());
+            statement.setString(3, tfDescripcionCategoria.getText());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());

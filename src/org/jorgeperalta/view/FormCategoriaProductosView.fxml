@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.FormCategoriaProductosController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.FormCategoriaProductosController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +18,7 @@
       </ImageView>
       <TextField fx:id="tfCategoriaProductoId" editable="false" layoutX="14.0" layoutY="221.0" prefHeight="35.0" prefWidth="263.0" />
       <TextField fx:id="tfNombreCategoria" layoutX="14.0" layoutY="300.0" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="263.0" promptText="Nombre de Categoria" />
-      <TextField fx:id="tfDecripcionCategoria" layoutX="14.0" layoutY="388.0" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="263.0" promptText="Descripcion de Categoria" />
+      <TextField fx:id="tfDescripcionCategoria" layoutX="14.0" layoutY="388.0" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="263.0" promptText="Descripcion de Categoria" />
       <GridPane layoutX="331.0" layoutY="224.0" prefHeight="187.0" prefWidth="155.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
