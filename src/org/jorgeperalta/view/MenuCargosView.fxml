@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.MenuCargosController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.MenuCargosController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,13 +36,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Agregar" GridPane.halignment="CENTER" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: #BDED7E;" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: #BDED7E;" text="Agregar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: #BDED7E;" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: #BDED7E;" text="Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegresar" layoutX="787.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Regresar" />
+      <Button fx:id="btnRegresar" layoutX="787.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: #BDED7E;" text="Regresar" />
       <Button fx:id="btnBuscar" layoutX="632.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="30.0">
          <graphic>
             <ImageView fitHeight="75.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">

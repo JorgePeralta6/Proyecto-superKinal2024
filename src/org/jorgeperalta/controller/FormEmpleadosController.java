@@ -154,6 +154,7 @@ public class FormEmpleadosController implements Initializable {
                     conexion.close();
                 }
             }catch(SQLException e){
+                System.out.println(e.getMessage());
             }
         }
     }
