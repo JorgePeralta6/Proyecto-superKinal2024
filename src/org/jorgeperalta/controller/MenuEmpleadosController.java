@@ -103,7 +103,7 @@ public class MenuEmpleadosController implements Initializable {
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
                 String cargo = resultset.getString("nombreCargo");
-                String encargado = resultset.getString("nombreEmpleado");
+                String encargado = resultset.getString("Encargado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
@@ -182,8 +182,8 @@ public class MenuEmpleadosController implements Initializable {
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
-                String encargado = resultset.getString("encargado");
+                String cargo = resultset.getString("cargoId");
+                String encargado = resultset.getString("encargadoId");
                 
                 empleado = (new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }

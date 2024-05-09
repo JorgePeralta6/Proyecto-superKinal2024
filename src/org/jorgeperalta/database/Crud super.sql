@@ -460,7 +460,7 @@ create procedure sp_ListarEmpleados()
 		select 
 			E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
 			C.nombreCargo,
-			E2.nombreEmpleado from Empleados E1
+			E2.nombreEmpleado 'Encargao' from Empleados E1
 			join Cargos C on C.cargoId = E1.cargoId
 			left join Empleados E2 on E1.encargadoId = E2.empleadoId;
     END $$
@@ -492,6 +492,7 @@ DELIMITER $$
 						where empleadoId = empId;
 		END $$
 DELIMITER ;
+call sp_BuscarEmpleados(2);
 
 DELIMITER $$
 	create procedure sp_EditarEmpleados (in empId int, in nomEmp varchar (30), in apeEmp  varchar (30), in sud decimal (10, 2), in horEntr time, in horSld time, in cargId int, in encaId int)
