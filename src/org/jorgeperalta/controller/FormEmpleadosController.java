@@ -61,7 +61,7 @@ public class FormEmpleadosController implements Initializable {
         tfSueldo.setText(Double.toString(empleado.getSueldo()));
         tfHoraEntrada.setText(empleado.getHoraEntrada());
         tfHoraSalida.setText(empleado.getHoraSalida());
-        tfCargo.setText(empleado.getCargo());
+        tfCargo.setText(empleado.getNombreCargo());
         tfEncargado.setText(empleado.getEncargado());
 
     }

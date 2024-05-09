@@ -460,7 +460,7 @@ create procedure sp_ListarEmpleados()
 		select 
 			E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
 			C.nombreCargo,
-			E2.nombreEmpleado 'Encargao' from Empleados E1
+			E2.nombreEmpleado as 'Encargado' from Empleados E1
 			join Cargos C on C.cargoId = E1.cargoId
 			left join Empleados E2 on E1.encargadoId = E2.empleadoId;
     END $$
@@ -480,16 +480,12 @@ DELIMITER $$
 	create procedure sp_BuscarEmpleados (in empId int)
 		BEGIN 
 			select
-				Empleados.empleadoId,
-				Empleados.nombreEmpleado,
-                Empleados.apellidoEmpleado,
-                Empleados.sueldo,
-                Empleados.horaEntrada,
-                Empleados.horaSalida,
-                Empleados.cargoId,
-                Empleados.encargadoId
-					from Empleados 
-						where empleadoId = empId;
+			E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+			C.nombreCargo,
+			E2.nombreEmpleado as 'Encargado' from Empleados E1
+			join Cargos C on C.cargoId = E1.cargoId
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId
+						where  E1.empleadoId = empId;
 		END $$
 DELIMITER ;
 call sp_BuscarEmpleados(2);
@@ -595,7 +591,6 @@ BEGIN
 	join Clientes C on TS.clienteId = C.clienteId;
 END $$
 DELIMITER ;
-
 select * from TicketSoporte;
 
 DELIMITER $$
@@ -611,6 +606,7 @@ DELIMITER $$
 create procedure sp_buscarTicketSoporte(in tickSopId int)
 BEGIN 
 	select
+		TicketSoporte.ticketSoporteId,
 		TicketSoporte.descripcionTicket,
 		TicketSoporte.estatus,
 		TicketSoporte.clienteId,
@@ -619,6 +615,7 @@ BEGIN
 				where ticketSoporteId = tickSopId;
 END $$
 DELIMITER ;
+call sp_buscarTicketSoporte(1);
 
 DELIMITER $$
 create procedure sp_editarTicketSoporte(in tickSopId int, in descTick varchar (250), in est varchar (30), in cliId int, in facId int)

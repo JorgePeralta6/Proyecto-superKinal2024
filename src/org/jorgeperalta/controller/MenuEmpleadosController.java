@@ -81,8 +81,8 @@ public class MenuEmpleadosController implements Initializable {
                 colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("sueldo"));
                 colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
                 colHoraSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
-                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
-                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargadoId"));
+                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreCargo"));
+                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("Encargado"));
             }
         }
     }
@@ -138,8 +138,8 @@ public class MenuEmpleadosController implements Initializable {
         colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
         colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
         colHoraSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
-        colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
-        colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
+        colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreCargo"));
+        colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("Encargado"));
 
     }
     
@@ -170,7 +170,7 @@ public class MenuEmpleadosController implements Initializable {
         Empleado empleado = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_buscarEmpleados(?)";
+            String sql = "call sp_BuscarEmpleados(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1 ,Integer.parseInt(tfEmpleadosId.getText()));
             resultset = statement.executeQuery();
@@ -182,8 +182,8 @@ public class MenuEmpleadosController implements Initializable {
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargoId");
-                String encargado = resultset.getString("encargadoId");
+                String cargo = resultset.getString("nombreCargo");
+                String encargado = resultset.getString("Encargado");
                 
                 empleado = (new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
