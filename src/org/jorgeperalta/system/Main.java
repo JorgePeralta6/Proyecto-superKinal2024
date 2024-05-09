@@ -17,10 +17,12 @@ import org.jorgeperalta.controller.FormCargosController;
 import org.jorgeperalta.controller.FormCategoriaProductosController;
 import org.jorgeperalta.controller.FormClientesController;
 import org.jorgeperalta.controller.FormDistribuidoresController;
+import org.jorgeperalta.controller.FormEmpleadosController;
 import org.jorgeperalta.controller.MenuCargosController;
 import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
 import org.jorgeperalta.controller.MenuDistribuidoresController;
+import org.jorgeperalta.controller.MenuEmpleadosController;
 import org.jorgeperalta.controller.MenuPrincipalController;
 import org.jorgeperalta.controller.MenuTicketSoporteController;
 
@@ -145,6 +147,25 @@ public class Main extends Application {
             FormCategoriaProductosController formCategoriaProductosView = (FormCategoriaProductosController)switchScene("FormCategoriaProductosView.fxml", 500, 600);
             formCategoriaProductosView.setOp(op);
             formCategoriaProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuEmpleadosView(){
+        try{
+            MenuEmpleadosController menuEmpleadoView = (MenuEmpleadosController)switchScene("MenuEmpleadosView.fxml", 1200, 750);
+            menuEmpleadoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formEmpleadosView(int op){
+        try{
+            FormEmpleadosController formEmpleadosView = (FormEmpleadosController)switchScene("FormEmpleadosView.fxml", 500, 700);
+            formEmpleadosView.setOp(op);
+            formEmpleadosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

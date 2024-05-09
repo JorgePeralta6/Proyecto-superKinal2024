@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.MenuEmpleadosController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoMenuEmpleados.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblEmpleados" layoutX="14.0" layoutY="276.0" prefHeight="410.0" prefWidth="910.0">
+        <columns>
+          <TableColumn fx:id="colEmpleadoId" prefWidth="75.0" text="EmpleadoId" />
+          <TableColumn fx:id="colNombreEmpleado" prefWidth="114.0" text="NombreEmpleado" />
+            <TableColumn fx:id="colApellidoEmpleado" prefWidth="116.0" text="ApellidoEmpleado" />
+            <TableColumn fx:id="colSueldo" prefWidth="91.0" text="Sueldo" />
+            <TableColumn fx:id="colHoraEntrada" prefWidth="118.0" text="HoraEntrada" />
+            <TableColumn fx:id="colHoraSalida" prefWidth="91.0" text="HoraSalida" />
+            <TableColumn fx:id="colCargo" prefWidth="110.0" text="Cargo" />
+            <TableColumn fx:id="colEncargado" prefWidth="194.0" text="Encargado" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="943.0" layoutY="388.0" prefHeight="187.0" prefWidth="238.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Agregar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Editar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="110.0" style="-fx-background-radius: 15;" text="Regresar" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnBuscar" layoutX="833.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="30.0">
+         <graphic>
+            <ImageView fitHeight="75.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="tfEmpleadosId" layoutX="544.0" layoutY="217.0" prefHeight="43.0" prefWidth="279.0" promptText="Ingrese el Id del Empleado" />
+   </children>
+</AnchorPane>

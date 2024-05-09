@@ -20,7 +20,7 @@ public class MenuPrincipalController implements Initializable{
     private Main stage;
     
     @FXML
-    MenuItem btnMenuClientes, btnTicketSoporte, btnCargos, btnDistribuidores, btnCategoriaProductos;
+    MenuItem btnMenuClientes, btnTicketSoporte, btnCargos, btnDistribuidores, btnCategoriaProductos, btnEmpleados;
     
     @Override
     public void initialize(URL location, ResourceBundle resources){
