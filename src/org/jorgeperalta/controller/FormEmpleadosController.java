@@ -43,7 +43,7 @@ public class FormEmpleadosController implements Initializable {
     TextField tfEmpleadoId, tfNombreEmpleado, tfApellidoEmpleado, tfSueldo, tfHoraEntrada, tfHoraSalida, tfCargo, tfEncargado;
     
     @FXML
-    Button btnAgregar, btnCancelar;
+    Button btnGuardar, btnCancelar;
     
 
     @Override
@@ -143,7 +143,7 @@ public class FormEmpleadosController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
             stage.menuEmpleadosView();
-        }else if(event.getSource() == btnAgregar){
+        }else if(event.getSource() == btnGuardar){
             if(op == 1){
                 agregarEmpleado();
                 EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);

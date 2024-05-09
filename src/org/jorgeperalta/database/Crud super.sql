@@ -452,22 +452,20 @@ DELIMITER $$
 		END $$
 DELIMITER ;
 
-call sp_AgregarEmpleados('Peralta', 'Puto', 3420.90, '8:00:00', '17:00:00', 1, null);
+call sp_AgregarEmpleados('Jorge', 'Peralta', 3420.90, '8:00:00', '17:00:00', 1, null);
 
 DELIMITER $$
-	create procedure sp_ListarEmpleados ()
-		begin 
-			select 
-				Empleados.nombreEmpleado,
-                Empleados.apellidoEmpleado,
-                Empleados.sueldo,
-                Empleados.horaEntrada,
-                Empleados.horaSalida,
-                Empleados.cargoId,
-                Empleados.encargadoId
-					FROM Empleados;
-		END $$
+create procedure sp_ListarEmpleados()
+	BEGIN
+		select 
+			E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+			C.nombreCargo,
+			E2.nombreEmpleado from Empleados E1
+			join Cargos C on C.cargoId = E1.cargoId
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId;
+    END $$
 DELIMITER ;
+call sp_listarEmpleados();
 
 DELIMITER $$
 	create procedure sp_EliminarEmpleados (in empId int)
@@ -482,6 +480,7 @@ DELIMITER $$
 	create procedure sp_BuscarEmpleados (in empId int)
 		BEGIN 
 			select
+				Empleados.empleadoId,
 				Empleados.nombreEmpleado,
                 Empleados.apellidoEmpleado,
                 Empleados.sueldo,

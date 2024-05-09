@@ -50,32 +50,60 @@ public class MenuEmpleadosController implements Initializable {
     
     @FXML
     Button btnAgregar, btnEditar, btnEliminar, btnBuscar, btnRegresar;
-
-    public Main getStage() {
-        return stage;
-    }
-
-    public void setStage(Main stage) {
-        this.stage = stage;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cargarLista();
+    }    
+    
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnAgregar){
+            stage.formEmpleadosView(1);
+        }else if(event.getSource() == btnEditar){
+            EmpleadoDTO.getEmpleadoDTO().setEmpleado((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
+            stage.formEmpleadosView(2);
+        }else if(event.getSource() == btnRegresar){
+            stage.menuPrincipalView();
+        }else if(event.getSource() == btnEliminar){
+            int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
+            eliminarEmpleados(empId);
+            cargarLista();
+        }else if (event.getSource() == btnBuscar){
+            tblEmpleados.getItems().clear();
+            if(tfEmpleadosId.getText().equals("")){
+                cargarLista();
+            }else{
+                tblEmpleados.getItems().add(buscarEmpleado());
+                colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
+                colNombreEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
+                colApellidoEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
+                colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("sueldo"));
+                colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
+                colHoraSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
+                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
+                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargadoId"));
+            }
+        }
     }
     
     public ObservableList<Empleado> listarEmpleados(){
         ArrayList<Empleado> empleados = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarEmpleados()";
+            String sql = "call sp_ListarEmpleados()";
             statement = conexion.prepareStatement(sql);
             resultset = statement.executeQuery();
             
             while(resultset.next()){
                 int empleadoId = resultset.getInt("empleadoId");
-                String nombreEmpleado = resultset.getString("Empleado");
+                String nombreEmpleado = resultset.getString("nombreEmpleado");
                 String apellidoEmpleado = resultset.getString("apellidoEmpleado");
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
-                String encargado = resultset.getString("encargado");
+                String cargo = resultset.getString("nombreCargo");
+                String encargado = resultset.getString("nombreEmpleado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
@@ -179,45 +207,13 @@ public class MenuEmpleadosController implements Initializable {
         
         return empleado;
     }
+    
+    public Main getStage() {
+        return stage;
+    }
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cargarLista();
-    }    
-    
-    @FXML
-    
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnAgregar){
-            stage.formEmpleadosView(1);
-        }else if(event.getSource() == btnEditar){
-            EmpleadoDTO.getEmpleadoDTO().setEmpleado((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
-            stage.formEmpleadosView(2);
-        }else if(event.getSource() == btnRegresar){
-            stage.menuPrincipalView();
-        }else if(event.getSource() == btnEliminar){
-            int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
-            eliminarEmpleados(empId);
-            cargarLista();
-        }else if (event.getSource() == btnBuscar){
-            tblEmpleados.getItems().clear();
-            if(tfEmpleadosId.getText().equals("")){
-                cargarLista();
-            }else{
-                tblEmpleados.getItems().add(buscarEmpleado());
-                colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
-                colNombreEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
-                colApellidoEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
-                colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("sueldo"));
-                colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
-                colHoraSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
-                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
-                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargadoId"));
-            }
-        }
+    public void setStage(Main stage) {
+        this.stage = stage;
     }
     
 }

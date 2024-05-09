@@ -9,6 +9,7 @@ package org.jorgeperalta.model;
  *
  * @author Usuario
  */
+
 public class Empleado {
     private int empleadoId;
     private String nombreEmpleado;
