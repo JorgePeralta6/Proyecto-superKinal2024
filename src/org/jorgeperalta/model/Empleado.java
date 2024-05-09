@@ -15,9 +15,7 @@ public class Empleado {
     private String nombreEmpleado;
     private String apellidoEmpleado;
     private double sueldo;
-    //private LocalTime horaEntrada;
     private String horaEntrada;
-    //private LocalTime horaSalida;
     private String horaSalida;
     private int cargoId;
     private String nombreCargo;

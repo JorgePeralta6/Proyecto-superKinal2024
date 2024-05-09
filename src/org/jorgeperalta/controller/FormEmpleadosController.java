@@ -8,20 +8,14 @@ package org.jorgeperalta.controller;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.dto.EmpleadoDTO;
 import org.jorgeperalta.model.Empleado;
@@ -54,6 +48,36 @@ public class FormEmpleadosController implements Initializable {
         
     }    
     
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnCancelar){
+            stage.menuEmpleadosView();
+        }else if(event.getSource() == btnGuardar){
+            if(op == 1){
+                if(!tfNombreEmpleado.getText().equals("") && !tfApellidoEmpleado.getText().equals("") && !tfSueldo.getText().equals("") && !tfHoraEntrada.getText().equals("") && !tfHoraSalida.getText().equals("")){
+                    agregarEmpleado();
+                    stage.menuEmpleadosView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombreEmpleado.requestFocus();
+                    return;
+                }
+            }else if(op == 2){
+                if(!tfNombreEmpleado.getText().equals("") && !tfApellidoEmpleado.getText().equals("") && !tfSueldo.getText().equals("") && !tfHoraEntrada.getText().equals("") && !tfHoraSalida.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
+                        editarEmpleado();
+                        EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
+                        stage.menuEmpleadosView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombreEmpleado.requestFocus();
+                    return;
+                }
+            }
+        }
+    }
+    
     public void cargarDatos(Empleado empleado){
         tfEmpleadoId.setText(Integer.toString(empleado.getEmpleadoId()));
         tfNombreEmpleado.setText(empleado.getNombreEmpleado());
@@ -74,9 +98,6 @@ public class FormEmpleadosController implements Initializable {
         this.stage = stage;
     }
 
-    public void setOp(int op) {
-        this.op = op;
-    }
     
     public void agregarEmpleado(){
         try{
@@ -137,27 +158,7 @@ public class FormEmpleadosController implements Initializable {
         }
     }
     
-    
-    
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnCancelar){
-            stage.menuEmpleadosView();
-        }else if(event.getSource() == btnGuardar){
-            if(op == 1){
-                agregarEmpleado();
-                EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
-                stage.menuEmpleadosView();
-            }else if(op == 2){
-                editarEmpleado();
-                EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
-                stage.menuEmpleadosView();
-            }
-            
-            stage.menuEmpleadosView();
-        }
-      
+    public void setOp(int op) {
+        this.op = op;
     }
-        
-    
 }
