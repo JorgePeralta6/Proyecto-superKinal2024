@@ -25,6 +25,7 @@ import org.jorgeperalta.controller.MenuDistribuidoresController;
 import org.jorgeperalta.controller.MenuEmpleadosController;
 import org.jorgeperalta.controller.MenuFacturasController;
 import org.jorgeperalta.controller.MenuPrincipalController;
+import org.jorgeperalta.controller.MenuProductosController;
 import org.jorgeperalta.controller.MenuTicketSoporteController;
 
 
@@ -178,6 +179,17 @@ public class Main extends Application {
             menuFacturasView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuProductosView(){
+        try{
+            MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProductosView", 1300, 750);
+            menuProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

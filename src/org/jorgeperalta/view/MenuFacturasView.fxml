@@ -19,9 +19,9 @@
             <Image url="@../image/FondoMenuFacturas.png" />
          </image>
       </ImageView>
-      <TextField layoutX="42.0" layoutY="209.0" />
-      <TextField layoutX="42.0" layoutY="375.0" />
-      <TextField layoutX="273.0" layoutY="209.0" />
+      <TextField fx:id="tfHora" layoutX="42.0" layoutY="209.0" />
+      <TextField fx:id="tfTotal" layoutX="42.0" layoutY="375.0" />
+      <TextField fx:id="tfFecha" layoutX="273.0" layoutY="209.0" />
       <ComboBox fx:id="cmbCliente" layoutX="473.0" layoutY="209.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbEmpleado" layoutX="42.0" layoutY="499.0" prefWidth="150.0" />
       <TableView fx:id="tblFacturas" layoutX="273.0" layoutY="312.0" prefHeight="359.0" prefWidth="739.0">
@@ -34,7 +34,7 @@
             <TableColumn fx:id="colEmpleado" prefWidth="139.0" text="Empleado" />
         </columns>
       </TableView>
-      <TextField layoutX="714.0" layoutY="209.0" />
+      <TextField fx:id="tfFacturaId" layoutX="714.0" layoutY="209.0" />
       <GridPane layoutX="30.0" layoutY="550.0" prefHeight="109.0" prefWidth="230.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

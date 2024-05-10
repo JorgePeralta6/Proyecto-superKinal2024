@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoMenuProductos.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfEmpleadoId" layoutX="395.0" layoutY="91.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="tfNombreProducto" layoutX="618.0" layoutY="91.0" onAction="#handleButtonAction" />
+      <TextField fx:id="tfStock" layoutX="811.0" layoutY="91.0" onAction="#handleButtonAction" />
+      <TextField fx:id="tfPrecioU" layoutX="14.0" layoutY="221.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="258.0" />
+      <TextField fx:id="tfPrecioM" layoutX="344.0" layoutY="221.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="tfPrecioC" layoutX="656.0" layoutY="221.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="221.0" />
+      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoImportar.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblProductos" layoutX="268.0" layoutY="366.0" prefHeight="352.0" prefWidth="1021.0">
+        <columns>
+          <TableColumn fx:id="colProductoId" prefWidth="75.0" text="ProductoId" />
+          <TableColumn fx:id="colNombreProducto" prefWidth="117.0" text="NombreProducto" />
+            <TableColumn fx:id="colDescripcion" prefWidth="127.0" text="DescripcionProducto" />
+            <TableColumn fx:id="colStock" prefWidth="100.0" text="CantidadStock" />
+            <TableColumn fx:id="colPrecioU" prefWidth="142.0" text="Precio Venta Unitario" />
+            <TableColumn fx:id="colPrecioM" prefWidth="121.0" text="Precio Venta Mayor" />
+            <TableColumn fx:id="colPrecioCompra" prefWidth="101.0" text="Precio Compra" />
+            <TableColumn fx:id="colDistribuidor" prefWidth="128.0" text="Distribuidor" />
+            <TableColumn fx:id="colCategoria" prefWidth="109.0" text="Categoria" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnBuscar" layoutX="1193.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="30.0">
+         <graphic>
+            <ImageView fitHeight="75.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="tfProductoId" layoutX="905.0" layoutY="316.0" prefHeight="43.0" prefWidth="251.0" promptText="Ingrese id del producto" />
+      <TextField fx:id="tfDescripcion" layoutX="23.0" layoutY="323.0" onAction="#handleButtonAction" prefHeight="162.0" prefWidth="199.0" />
+      <ComboBox fx:id="cmbDistribuidor" layoutX="468.0" layoutY="298.0" prefWidth="150.0" promptText="Distribuidor" />
+      <ComboBox fx:id="cmbCategoria" layoutX="629.0" layoutY="298.0" prefWidth="150.0" promptText="Categoria" />
+      <GridPane layoutX="926.0" layoutY="192.0" prefHeight="109.0" prefWidth="230.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Regresar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button fx:id="btnVaciar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Vaciar Form" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
