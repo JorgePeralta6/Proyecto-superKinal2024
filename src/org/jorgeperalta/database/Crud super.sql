@@ -165,7 +165,7 @@ create procedure sp_agregarCategoriaProducto(in nombC varchar(30), descC varchar
 			(nombC, descC);
     END $$
 DELIMITER ;
-call sp_agregarCategoriaProducto('Aventuras en la Naturaleza','Una gran aventura adentrandoze a la naturaleza');
+call sp_agregarCategoriaProducto('Cocina','Aquí encontrarás todo para tu cocina y nuevo.');
 
 DELIMITER $$
 create procedure sp_listarCategoriaProducto()
@@ -519,17 +519,14 @@ DELIMITER ;
 call sp_AgregarFacturas('2023-04-23', '8:00:00', 45.90, 1, 1);
 
 DELIMITER $$
-	create procedure sp_ListarFacturas ()
-		BEGIN 
-			select 
-				Facturas.facturaId,
-				Facturas.fecha,
-                Facturas.hora,
-                Facturas.total,
-                Facturas.clienteId,
-                Facturas.empleadoId
-					FROM Facturas;
-		END $$
+create procedure sp_ListarFacturas ()
+	begin
+		select F.facturaId, F.fecha, F.hora, F.total,
+			C.nombre as cliente,
+            E.nombreEmpleado as empleado from Facturas F
+            join Clientes C on F.clienteId = C.clienteId
+            join Empleados E on F.empleadoId = E.empleadoId;
+    end $$
 DELIMITER ;
 
 DELIMITER $$
@@ -545,6 +542,7 @@ DELIMITER $$
 	create procedure sp_BuscarFacturas (in facId int)
 		BEGIN 
 			select
+				Facturas.facturaId,
 				Facturas.fecha,
                 Facturas.hora,
                 Facturas.total,

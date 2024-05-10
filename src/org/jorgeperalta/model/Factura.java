@@ -16,31 +16,33 @@ public class Factura {
     private int facturaId;
     private LocalDate fecha;
     private LocalTime hora;
+    private double total;
     private int clienteId;
     private String cliente;
     private int empleadoId;
     private String empleado;
-    private double total;
 
     public Factura() {
     }
 
-    public Factura(int facturaId, LocalDate fecha, LocalTime hora, int clienteId, int empleadoId, double total) {
+    
+    public Factura(int facturaId, LocalDate fecha, LocalTime hora,double total, String cliente, String empleado) {
         this.facturaId = facturaId;
         this.fecha = fecha;
         this.hora = hora;
-        this.clienteId = clienteId;
-        this.empleadoId = empleadoId;
         this.total = total;
-    }
-
-    public Factura(int facturaId, LocalDate fecha, LocalTime hora, String cliente, String empleado, double total) {
-        this.facturaId = facturaId;
-        this.fecha = fecha;
-        this.hora = hora;
         this.cliente = cliente;
         this.empleado = empleado;
+        
+    }
+        
+    public Factura(int facturaId, LocalDate fecha, LocalTime hora, double total, int clienteId, int empleadoId) {
+        this.facturaId = facturaId;
+        this.fecha = fecha;
+        this.hora = hora;
         this.total = total;
+        this.clienteId = clienteId;
+        this.empleadoId = empleadoId;
     }
 
     public int getFacturaId() {

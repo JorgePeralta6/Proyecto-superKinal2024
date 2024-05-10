@@ -23,6 +23,7 @@ import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
 import org.jorgeperalta.controller.MenuDistribuidoresController;
 import org.jorgeperalta.controller.MenuEmpleadosController;
+import org.jorgeperalta.controller.MenuFacturasController;
 import org.jorgeperalta.controller.MenuPrincipalController;
 import org.jorgeperalta.controller.MenuTicketSoporteController;
 
@@ -92,7 +93,6 @@ public class Main extends Application {
             menuTicketSoporteView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
-            e.printStackTrace();
         }
     }
     
@@ -167,6 +167,15 @@ public class Main extends Application {
             FormEmpleadosController formEmpleadosView = (FormEmpleadosController)switchScene("FormEmpleadosView.fxml", 500, 700);
             formEmpleadosView.setOp(op);
             formEmpleadosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuFacturasView(){
+        try{
+            MenuFacturasController menuFacturasView = (MenuFacturasController)switchScene("MenuFacturasView.fxml", 1200, 750);
+            menuFacturasView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

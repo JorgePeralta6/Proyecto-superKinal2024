@@ -77,7 +77,7 @@ public class MenuFacturasController implements Initializable {
         }else if(event.getSource() == btnVaciar){
             vaciarCampos();
         }
-    }
+    } 
     
     
     public void vaciarCampos(){
@@ -93,9 +93,10 @@ public class MenuFacturasController implements Initializable {
         colFacturaId.setCellValueFactory(new PropertyValueFactory<Factura, Integer>("facturaId"));
         colFecha.setCellValueFactory(new PropertyValueFactory<Factura, LocalDate>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<Factura, LocalTime>("hora"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<Factura, Double>("total"));
         colCliente.setCellValueFactory(new PropertyValueFactory<Factura, String>("cliente"));
         colEmpleado.setCellValueFactory(new PropertyValueFactory<Factura, String>("empleado"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<Factura, Double>("total"));
+        
         tblFacturas.getSortOrder().add(colFacturaId);
     }
     
@@ -148,12 +149,13 @@ public class MenuFacturasController implements Initializable {
                 int facturaId = resultset.getInt("facturaId");
                 Date fecha = resultset.getDate("fecha");
                 Time hora = resultset.getTime("hora");
+                Double total = resultset.getDouble("total");
                 String cliente = resultset.getString("cliente");
                 String empleado = resultset.getString("empleado");
-                Double total = resultset.getDouble("total");
+
 
                 
-                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));
+                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(),total, cliente, empleado));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -230,8 +232,8 @@ public class MenuFacturasController implements Initializable {
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
-                String encargado = resultset.getString("encargado");
+                String cargo = resultset.getString("nombreCargo");
+                String encargado = resultset.getString("Encargado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
