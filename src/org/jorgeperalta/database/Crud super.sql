@@ -280,17 +280,26 @@ create procedure sp_agregarProducto(in nom varchar(50),in des varchar(100),in ca
 	END $$
 DELIMITER ;
 
+
 DELIMITER $$
 create procedure sp_listarProducto()
 	BEGIN 
-		select * from Productos;
+		select P.productoId,P.nombreProducto,P.descripcionProducto,P.cantidadStock,P.precioVentaUnitario,P.precioVentaMayor,P.precioCompra,P.imagenProducto,
+        concat(D.distribuidorId, ': | ' , D.nombreDistribuidor ) as 'Distribuidor',
+        concat(C.categoriaProductosId, ': | ', C.nombreCategoria) as 'Categoria' from Productos P
+        join Distribuidores D on P.distribuidorId = D.distribuidorId
+        join CategoriaProductos C on P.categoriaProductosId = C.categoriaProductosId;
     END $$
 DELIMITER ;
 
 DELIMITER $$
 create procedure sp_buscarProducto(in proId int)
 	BEGIN 
-		select * from Productos
+		select P.productoId,P.nombreProducto,P.descripcionProducto,P.cantidadStock,P.precioVentaUnitario,P.precioVentaMayor,P.precioCompra,P.imagenProducto,
+        concat(D.distribuidorId, ': | ' , D.nombreDistribuidor ) as 'Distribuidor',
+        concat(C.categoriaProductosId, ': | ', C.nombreCategoria) as 'Categoria' from Productos P
+        join Distribuidores D on P.distribuidorId = D.distribuidorId
+        join CategoriaProductos C on P.categoriaProductosId = C.categoriaProductosId
         where productoId = proId;
     END $$
 DELIMITER ;
