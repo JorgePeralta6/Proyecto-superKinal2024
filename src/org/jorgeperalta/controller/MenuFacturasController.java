@@ -96,7 +96,6 @@ public class MenuFacturasController implements Initializable {
         colTotal.setCellValueFactory(new PropertyValueFactory<Factura, Double>("total"));
         colCliente.setCellValueFactory(new PropertyValueFactory<Factura, String>("cliente"));
         colEmpleado.setCellValueFactory(new PropertyValueFactory<Factura, String>("empleado"));
-        
         tblFacturas.getSortOrder().add(colFacturaId);
     }
     
@@ -141,7 +140,7 @@ public class MenuFacturasController implements Initializable {
         ArrayList<Factura> facturas = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarFacturas()";
+            String sql = "call sp_ListarFacturas()";
             statement = conexion.prepareStatement(sql);
             resultset = statement.executeQuery();
             
@@ -221,7 +220,7 @@ public class MenuFacturasController implements Initializable {
         ArrayList<Empleado> empleados = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarEmpleados()";
+            String sql = "call sp_ListarEmpleados()";
             statement = conexion.prepareStatement(sql);
             resultset = statement.executeQuery();
             
@@ -261,7 +260,7 @@ public class MenuFacturasController implements Initializable {
     public void agregarFacturas(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarFacturas(?, ?, ?, ?, ?)";
+            String sql = "call sp_AgregarFacturas(?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setDate(1, Date.valueOf(LocalDate.now()));
             statement.setTime(2, Time.valueOf(LocalTime.now()));
@@ -289,7 +288,7 @@ public class MenuFacturasController implements Initializable {
     public void editarFacturas(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarFacturas(?, ?, ?, ?, ?, ?)";
+            String sql = "call sp_EditarFacturas(?, ?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfFacturaId.getText()));
             statement.setDate(2, Date.valueOf(tfFecha.getText()));
@@ -314,10 +313,6 @@ public class MenuFacturasController implements Initializable {
         }
     }
      
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cmbCliente.setItems(listarClientes());
