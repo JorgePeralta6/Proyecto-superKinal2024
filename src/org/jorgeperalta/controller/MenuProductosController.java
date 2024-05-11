@@ -32,7 +32,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.stage.Stage;
 import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.model.CategoriaProducto;
 import org.jorgeperalta.model.Distribuidor;
@@ -328,7 +327,7 @@ public class MenuProductosController implements Initializable {
             statement.setDouble(4, Double.parseDouble(tfPrecioU.getText()));
             statement.setDouble(5, Double.parseDouble(tfPrecioM.getText()));
             statement.setDouble(6, Double.parseDouble(tfPrecioC.getText()));
-            if (imgCargar.getImage() != null) {
+            if (imgCargar.getImage() == null) {
                 statement.setBinaryStream(7, null);
             } else {
                 InputStream img = new FileInputStream(files.get(0));
@@ -366,7 +365,7 @@ public class MenuProductosController implements Initializable {
             statement.setDouble(5, Double.parseDouble(tfPrecioU.getText()));
             statement.setDouble(6, Double.parseDouble(tfPrecioM.getText()));
             statement.setDouble(7, Double.parseDouble(tfPrecioC.getText()));
-            if (imgCargar.getImage() != null) {
+            if (imgCargar.getImage() == null) {
                 statement.setBinaryStream(8, null);
             } else {
                 InputStream img = new FileInputStream(imageFile);

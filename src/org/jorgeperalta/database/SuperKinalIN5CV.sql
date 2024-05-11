@@ -53,7 +53,7 @@ create table Productos(
     precioVentaUnitario decimal (10,2) not null,
     precioVentaMayor decimal (10,2) not null,
     precioCompra decimal (10,2) not null,
-    imagenProducto blob,
+    imagenProducto longblob,
     distribuidorId int not null,
     categoriaProductosId int not null,
     primary key PK_productoId (productoId),
