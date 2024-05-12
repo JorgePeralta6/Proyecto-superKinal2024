@@ -56,21 +56,31 @@ DELIMITER $$
         declare precio decimal(10,2);
         declare i int default 1;
         declare curFacturaID, curProductoID int;
+        
         declare cursorDetalleFactura cursor for 
 			select DF.facturaId, DF.productoId from DetalleFactura DF;
+            
 		open cursorDetalleFactura;
+        
         totalLoop : loop
+        
         fetch cursorDetalleFactura into curFacturaID,curProductoID;
+        
         if (factID = curFacturaId)then
-			set precio = (FN_precio(curProductoId));
+			set precio = (select P.precioVentaUnitario from Productos P where P.productoId = curProductoId);
             set total = total + precio;
         end if;
+        
         if i = 	(select count(*)from DetalleFactura)then
         leave totalLoop;
         end if;
+        
         set i = i + 1;
+        
         end loop totalLoop;
+        
         call sp_asignarTotal(total,factID);
+        
         return total;
     end$$
 DELIMITER ;

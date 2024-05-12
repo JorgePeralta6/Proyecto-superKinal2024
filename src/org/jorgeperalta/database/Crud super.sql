@@ -275,10 +275,11 @@ DELIMITER ;
 DELIMITER $$
 create procedure sp_agregarProducto(in nom varchar(50),in des varchar(100),in can int, in preU decimal(10,2),in preM decimal(10,2),in preC decimal(10,2), in ima longblob, in disId int, in catId int)
 	BEGIN
-		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId ) values
+		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId ) values
 			(nom, des, can, preU, preM, preC, ima, disId, catId);
 	END $$
 DELIMITER ;
+call sp_agregarProducto('Camiseta de algodón', 'Camiseta básica de algodón en varios colores', 100, 15.99, 12.99, 5.50, 'Descargas/imagenCamisaAlgodon.png',1, 1);
 
 
 DELIMITER $$
@@ -291,6 +292,7 @@ create procedure sp_listarProducto()
         join CategoriaProductos C on P.categoriaProductosId = C.categoriaProductosId;
     END $$
 DELIMITER ;
+call sp_listarProducto();
 
 DELIMITER $$
 create procedure sp_buscarProducto(in proId int)

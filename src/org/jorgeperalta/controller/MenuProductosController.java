@@ -73,8 +73,8 @@ public class MenuProductosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cmbDistribuidor.setItems(listarDistribuidores());
-        cmbCategoria.setItems(listarCategorias());
+        cmbDistribuidor.setItems(listarDistribuidor());
+        cmbCategoria.setItems(listarCategoriaProductos());
         cargarLista();
     }
 
@@ -184,7 +184,7 @@ public class MenuProductosController implements Initializable {
         ArrayList<Producto> productos = new ArrayList<>();
         try {
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarProductos()";
+            String sql = "call sp_listarProducto()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
@@ -391,78 +391,79 @@ public class MenuProductosController implements Initializable {
         }
     }
 
-    public ObservableList<Distribuidor> listarDistribuidores() {
+    public ObservableList<Distribuidor> listarDistribuidor(){
         ArrayList<Distribuidor> distribuidores = new ArrayList<>();
-        try {
+        
+        try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarDistribuidores()";
+            String sql = "call sp_listarDistribuidor()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                int Id = resultSet.getInt("distribuidorId");
-                String nombre = resultSet.getString("nombreDistribuidor");
-                String direccion = resultSet.getString("direccionDistribuidor");
-                String nit = resultSet.getString("nitDistribuidor");
-                String telefono = resultSet.getString("telefonoDistribuidor");
+            
+            while(resultSet.next()){
+                int distribuidorId = resultSet.getInt("distribuidorId");
+                String nombreDistribuidor = resultSet.getString("nombreDistribuidor");
+                String direccionDistribuidor = resultSet.getString("direccionDistribuidor");
+                String nitDistribuidor = resultSet.getString("nitDistribuidor");
+                String telefonoDistribuidor = resultSet.getString("telefonoDistribuidor");
                 String web = resultSet.getString("web");
-
-                distribuidores.add(new Distribuidor(Id, nombre, direccion, nit, telefono, web));
+                
+                distribuidores.add(new Distribuidor(distribuidorId, nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web));
             }
-        } catch (SQLException e) {
+        }catch(SQLException e){
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (resultSet != null) {
+        }finally{
+            try{
+                if(resultSet != null){
                     resultSet.close();
                 }
-                if (statement != null) {
+                if(statement != null){
                     statement.close();
                 }
-                if (conexion != null) {
+                if(conexion != null){
                     conexion.close();
                 }
-            } catch (SQLException e) {
+            }catch(SQLException e){
                 System.out.println(e.getMessage());
             }
         }
         return FXCollections.observableList(distribuidores);
     }
 
-    public ObservableList<CategoriaProducto> listarCategorias() {
-        ArrayList<CategoriaProducto> categorias = new ArrayList<>();
-        try {
+    public ObservableList<CategoriaProducto> listarCategoriaProductos(){
+        ArrayList<CategoriaProducto> categoriaProductos = new ArrayList<>();
+        
+        try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarCategoriaProductos()";
+            String sql = "call sp_listarCategoriaProducto()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                int catPId = resultSet.getInt("categoriaProductosId");
-                String nombreCat = resultSet.getString("nombreCategoria");
-                String desCat = resultSet.getString("descripcionCategoria");
-                categorias.add(new CategoriaProducto(catPId, nombreCat, desCat));
+            
+            while(resultSet.next()){
+                int categoriaProductosId = resultSet.getInt("categoriaProductosId");
+                String nombreCategoria = resultSet.getString("nombreCategoria");
+                String descripcionCategoria = resultSet.getString("descripcionCategoria");
+                
+                categoriaProductos.add(new CategoriaProducto(categoriaProductosId, nombreCategoria, descripcionCategoria));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (conexion != null) {
-                    conexion.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(resultSet != null){
                     resultSet.close();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
             }
-
         }
-        return FXCollections.observableList(categorias);
-
+        return FXCollections.observableList(categoriaProductos);
     }
 
     public Main getStage() {
