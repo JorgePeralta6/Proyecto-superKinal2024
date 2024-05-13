@@ -649,6 +649,7 @@ DELIMITER $$
 				values (factId, proId);
 		END $$
 DELIMITER ;
+call sp_agregarDetalleFactura(1,1);
 
 DELIMITER $$
 	create procedure sp_ListarDetalleFactura  ()

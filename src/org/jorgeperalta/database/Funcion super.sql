@@ -85,7 +85,7 @@ DELIMITER $$
     end$$
 DELIMITER ;
  
-select fn_calcularTotal(9);
+select fn_calcularTotal(1);
 select * from facturas;
 DELIMITER $$
 	create trigger tg_totalFactura
