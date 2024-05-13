@@ -16,11 +16,13 @@ import javafx.stage.Stage;
 import org.jorgeperalta.controller.FormCargosController;
 import org.jorgeperalta.controller.FormCategoriaProductosController;
 import org.jorgeperalta.controller.FormClientesController;
+import org.jorgeperalta.controller.FormComprasController;
 import org.jorgeperalta.controller.FormDistribuidoresController;
 import org.jorgeperalta.controller.FormEmpleadosController;
 import org.jorgeperalta.controller.MenuCargosController;
 import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
+import org.jorgeperalta.controller.MenuComprasController;
 import org.jorgeperalta.controller.MenuDistribuidoresController;
 import org.jorgeperalta.controller.MenuEmpleadosController;
 import org.jorgeperalta.controller.MenuFacturasController;
@@ -189,6 +191,25 @@ public class Main extends Application {
             menuProductosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());           
+        }
+    }
+    
+    public void menuComprasView(){
+        try{
+            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuComprasView.fxml", 1200, 750);
+            menuComprasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formComprasView(int op){
+        try{
+            FormComprasController formComprasView = (FormComprasController)switchScene("FormComprasView.fxml", 500, 700);
+            formComprasView.setOp(op);
+            formComprasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
