@@ -68,7 +68,7 @@ create table Promociones(
     precioPromocion decimal (10,2) not null,
     descripcionPromocion varchar (100),
     fechaInicio date not null,
-    fechaFinalizacionn date not null,
+    fechaFinalizacion date not null,
     productoId int not null,
     primary key PK_promocionId (promocionId),
     constraint FK_Promociones_Productos foreign key Promociones(productoId)

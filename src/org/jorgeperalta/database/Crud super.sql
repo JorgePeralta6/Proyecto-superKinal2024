@@ -345,8 +345,7 @@ BEGIN
     
 END $$
 DELIMITER ;
-
--- call sp_agregarPromociones();
+call sp_agregarPromociones(19.50, 'Gran oferta', '2024-04-13', '2024-05-12', 1);
 
 DELIMITER $$
 create procedure sp_listarPromociones()
@@ -363,7 +362,7 @@ BEGIN
 END $$
 DELIMITER ;
 
--- call sp_listarPromociones();
+call sp_listarPromociones();
 
 DELIMITER $$
 create procedure sp_eliminarPromociones(in proId int)
