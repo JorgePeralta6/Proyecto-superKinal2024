@@ -121,6 +121,7 @@ create procedure sp_agregarCompra(in fecCom date, in totCom decimal (10,2))
 			(fecCom, totCom);
     END $$
 DELIMITER ;
+call sp_agregarCompra('2023-05-12', 122.20);
 
 DELIMITER $$
 create procedure sp_listarCompra()
@@ -128,6 +129,7 @@ create procedure sp_listarCompra()
 		select * from Compras;
     END $$
 DELIMITER ;
+call sp_listarCompra();
 
 DELIMITER $$
 create procedure sp_buscarCompra(in comId int)
