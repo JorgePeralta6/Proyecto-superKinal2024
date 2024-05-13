@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.MenuPromocionesController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoMenuPromociones.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblPromociones" layoutX="67.0" layoutY="280.0" prefHeight="325.0" prefWidth="968.0">
+        <columns>
+          <TableColumn fx:id="colPromocionId" prefWidth="96.0" text="PromocionId" />
+          <TableColumn fx:id="colPrecioPromocion" prefWidth="110.0" text="PrecioPromocion" />
+            <TableColumn fx:id="colDescripcionPromocion" prefWidth="265.0" text="Descripcion" />
+            <TableColumn fx:id="colFechaInicio" prefWidth="162.0" text="Fecha Inicio" />
+            <TableColumn fx:id="colFechaFinalizado" prefWidth="196.0" text="Fecha Finalizacion" />
+            <TableColumn fx:id="colProductoId" prefWidth="138.0" text="ProductoId" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfPromocionId" layoutX="67.0" layoutY="177.0" promptText="PromocionId" />
+      <ComboBox layoutX="67.0" layoutY="234.0" prefWidth="150.0" promptText="Producto" />
+      <TextField fx:id="tfPrecio" layoutX="312.0" layoutY="177.0" promptText="Precio" />
+      <TextField fx:id="tfFechaInicio" layoutX="312.0" layoutY="234.0" promptText="Fecha Inicio" />
+      <TextField fx:id="ftFechaFinalizo" layoutX="526.0" layoutY="177.0" promptText="Fecha Finalizacion" />
+      <TextArea fx:id="taDescripcion" layoutX="693.0" layoutY="176.0" prefHeight="101.0" prefWidth="255.0" promptText="Descripcion" wrapText="true" />
+   </children>
+</AnchorPane>

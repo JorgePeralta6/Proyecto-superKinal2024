@@ -28,6 +28,7 @@ import org.jorgeperalta.controller.MenuEmpleadosController;
 import org.jorgeperalta.controller.MenuFacturasController;
 import org.jorgeperalta.controller.MenuPrincipalController;
 import org.jorgeperalta.controller.MenuProductosController;
+import org.jorgeperalta.controller.MenuPromocionesController;
 import org.jorgeperalta.controller.MenuTicketSoporteController;
 
 
@@ -210,6 +211,16 @@ public class Main extends Application {
             formComprasView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuPromocionesView(){
+        try{
+            MenuPromocionesController menuPromocionesView = (MenuPromocionesController)switchScene("MenuPromocionesView.fxml", 1200, 750);
+            menuPromocionesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
