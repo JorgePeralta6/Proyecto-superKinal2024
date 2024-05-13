@@ -45,7 +45,7 @@ public class MenuPromocionesController implements Initializable {
     @FXML
     TableView tblPromociones;
     @FXML
-    TableColumn colPromocionId, colPrecioPromocion,colDescripcionPromocion,colFechaInicio,colFechaFinalizado,colProductoId;
+    TableColumn colPromocionId, colPrecioPromocion, colDescripcionPromocion, colFechaInicio, colFechaFinalizado, colProductoId;
     @FXML
     TextField tfPromocionId,tfPrecio, tfFechaInicio,ftFechaFinalizo;
     @FXML
@@ -55,7 +55,7 @@ public class MenuPromocionesController implements Initializable {
     @FXML
     TextArea taDescripcion;
     
-    
+    @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
