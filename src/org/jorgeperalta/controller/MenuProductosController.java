@@ -54,7 +54,7 @@ public class MenuProductosController implements Initializable {
     private List<File> files = null;
 
     @FXML
-    Button btnRegresar, btnAgregar, btnEditar, btnListar, btnEliminar, btnBuscar, btnImagen;
+    Button btnRegresar, btnBuscar, btnCargar, btnGuardar, btnVaciar;
 
     @FXML
     TableView tblProductos;
@@ -63,13 +63,13 @@ public class MenuProductosController implements Initializable {
     TableColumn colProductoId, colNombreProducto, colDescripcion, colStock, colPrecioU, colPrecioM, colPrecioCompra, colDistribuidor, colCategoria;
 
     @FXML
-    TextField tfProductoId, tfEmpleadoId, tfNombreProducto, tfDescripcion, tfStock, tfPrecioU, tfPrecioM, tfPrecioC;
+    TextField tfProductoId, tfProductoId2, tfNombreProducto, tfDescripcion, tfStock, tfPrecioU, tfPrecioM, tfPrecioC;
 
     @FXML
     ComboBox cmbDistribuidor, cmbCategoria;
 
     @FXML
-    ImageView imgCargar;
+    ImageView imgCargar, imgMostrar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,28 +83,9 @@ public class MenuProductosController implements Initializable {
         try {
             if (event.getSource() == btnRegresar) {
                 stage.menuPrincipalView();
-            } else if (event.getSource() == btnAgregar) {
-                if (!tfNombreProducto.getText().isEmpty() && !tfDescripcion.getText().isEmpty() && !tfStock.getText().isEmpty() && !tfPrecioU.getText().isEmpty() && !tfPrecioM.getText().isEmpty() && !tfPrecioC.getText().isEmpty()
-                        && cmbDistribuidor.getSelectionModel().getSelectedItem() != null && cmbCategoria.getSelectionModel().getSelectedItem() != null) {
-                    agregarProducto();
-                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
-                    cargarLista();
-                }
-            } else if (event.getSource() == btnListar) {
-                cargarLista();
-            } else if (event.getSource() == btnEditar) {
-                if (!tfNombreProducto.getText().isEmpty() && !tfDescripcion.getText().isEmpty() && !tfStock.getText().isEmpty() && !tfPrecioU.getText().isEmpty() && !tfPrecioM.getText().isEmpty() && !tfPrecioC.getText().isEmpty()
-                        && cmbDistribuidor.getSelectionModel().getSelectedItem() != null && cmbCategoria.getSelectionModel().getSelectedItem() != null) {
-                    editarProducto();
-                    cargarLista();
-                }
-            } else if (event.getSource() == btnEliminar) {
-                int proId = ((Producto) tblProductos.getSelectionModel().getSelectedItem()).getProductoId();
-                eliminarProducto(proId);
-                cargarLista();
             } else if (event.getSource() == btnBuscar) {
                 tblProductos.getItems().clear();
-                if (tfProductoId.getText().isEmpty()) {
+                if (tfProductoId2.getText().isEmpty()) {
                     cargarLista();
                 } else {
                     tblProductos.getItems().add(buscarProducto());
@@ -118,9 +99,23 @@ public class MenuProductosController implements Initializable {
                     colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("Distribuidor"));
                     colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("Categoria"));
                 }
+            } else if(event.getSource() == btnGuardar){
+            if(tfProductoId.getText().equals("")){
+                agregarProducto();
+                cargarLista();
+            }else{
+                if (!tfNombreProducto.getText().equals("") && !tfStock.getText().equals("") && !tfPrecioC.getText().equals("") && !tfPrecioU.getText().equals("") && !tfPrecioM.getText().equals("")) {
+                    editarProducto();
+                    cargarLista();
+                }
+                
+                }  
+            } else if(event.getSource() == btnVaciar){
+            vaciarCampos();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            
         }
     }
 
@@ -147,6 +142,25 @@ public class MenuProductosController implements Initializable {
         }
         return index;
     }
+     public void mostrarImagen() {
+        Producto p = (Producto) tblProductos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+            Blob img = p.getImagenProducto();
+            if (img != null) {
+                try {
+                    InputStream inputStream = img.getBinaryStream();
+                    Image image = new Image(inputStream);
+                    imgMostrar.setImage(image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                imgMostrar.setImage(null);
+            }
+        }else{
+            imgMostrar.setImage(null);
+        }
+    }
 
     public void cargarLista() {
         tblProductos.setItems(listarProductos());
@@ -160,13 +174,25 @@ public class MenuProductosController implements Initializable {
         colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("Distribuidor"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("Categoria"));
     }
+    
+    public void vaciarCampos(){
+        tfProductoId2.clear();
+        tfDescripcion.clear();
+        tfNombreProducto.clear();
+        tfStock.clear();
+        tfPrecioU.clear();
+        tfPrecioM.clear();
+        tfPrecioC.clear();
+        cmbDistribuidor.getSelectionModel().clearSelection();
+        cmbCategoria.getSelectionModel().clearSelection();
+    }
 
     public void cargarEditar() throws SQLException {
         Image imagen = null;
         Producto producto = (Producto) tblProductos.getSelectionModel().getSelectedItem();
         if (producto != null) {
-            tfEmpleadoId.setText(Integer.toString(producto.getProductoId()));
-            colNombreProducto.setText(producto.getNombreProducto());
+            tfProductoId2.setText(Integer.toString(producto.getProductoId()));
+            tfNombreProducto.setText(producto.getNombreProducto());
             tfDescripcion.setText(producto.getDescripcionProducto());
             tfStock.setText(Integer.toString(producto.getCantidadStock()));
             tfPrecioU.setText(Double.toString(producto.getPrecioVentaUnitario()));
@@ -279,7 +305,7 @@ public class MenuProductosController implements Initializable {
         Producto producto = null;
         try {
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_BuscarProducto(?)";
+            String sql = "call sp_buscarProducto(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfProductoId.getText()));
             resultSet = statement.executeQuery();
@@ -358,7 +384,7 @@ public class MenuProductosController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "Call sp_editarProducto(?,?,?,?,?,?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
+            statement.setInt(1, Integer.parseInt(tfProductoId2.getText()));
             statement.setString(2, tfNombreProducto.getText());
             statement.setString(3, tfDescripcion.getText());
             statement.setInt(4, Integer.parseInt(tfStock.getText()));

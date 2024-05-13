@@ -165,7 +165,7 @@ create procedure sp_agregarCategoriaProducto(in nombC varchar(30), descC varchar
 			(nombC, descC);
     END $$
 DELIMITER ;
-call sp_agregarCategoriaProducto('Cocina','Aquí encontrarás todo para tu cocina y nuevo.');
+call sp_agregarCategoriaProducto('Ropa','Aquí encontrarás todo tipo de ropa comoda.');
 
 DELIMITER $$
 create procedure sp_listarCategoriaProducto()
@@ -279,7 +279,7 @@ create procedure sp_agregarProducto(in nom varchar(50),in des varchar(100),in ca
 			(nom, des, can, preU, preM, preC, ima, disId, catId);
 	END $$
 DELIMITER ;
-call sp_agregarProducto('Camiseta de algodón', 'Camiseta básica de algodón en varios colores', 100, 15.99, 12.99, 5.50, 'Descargas/imagenCamisaAlgodon.png',1, 1);
+call sp_agregarProducto('Camiseta de algodón', 'Camiseta básica de algodón en varios colores', 100, 15.99, 12.99, 5.50, 'Descargas/imagenCamisa.jpg',1, 1);
 
 
 DELIMITER $$
@@ -305,6 +305,7 @@ create procedure sp_buscarProducto(in proId int)
         where productoId = proId;
     END $$
 DELIMITER ;
+call sp_buscarProducto(1);
 
 DELIMITER $$
 create procedure sp_eliminarProducto(in proId int)

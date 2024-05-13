@@ -82,7 +82,7 @@ public class MenuCategoriaProductosController implements Initializable {
                 colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
                 colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));                
             }
-        }
+        } 
     }
     
     public void cargarLista(){

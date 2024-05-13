@@ -188,8 +188,7 @@ public class Main extends Application {
             MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProductosView.fxml", 1300, 750);
             menuProductosView.setStage(this);
         }catch(Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            System.out.println(e.getMessage());           
         }
     }
 
