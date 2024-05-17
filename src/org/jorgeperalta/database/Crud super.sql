@@ -592,18 +592,20 @@ END $$
 DELIMITER ;
 
 call sp_agregarTicketSoporte('Problema del wifi', 1, 1);
+call sp_listarTicketSoporte();
 
 DELIMITER $$
 create procedure sp_listarTicketSoporte()
 BEGIN 
 	select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		CONCAT('Id: ', C.clienteId, ' | ', C.nombre, ' ', C.apellido) As 'cliente',
-		TS.facturaId from TicketSoporte TS
-	join Clientes C on TS.clienteId = C.clienteId;
+		concat('Id ', TS.facturaId ) as 'Factura'from TicketSoporte TS
+	join Clientes C on TS.clienteId = C.clienteId
+    join Facturas F on TS.facturaId = F.facturaId;
 END $$
 DELIMITER ;
 select * from TicketSoporte;
-
+call sp_listarTicketSoporte();
 DELIMITER $$
 create procedure sp_eliminarTicketSoporte(in tickSopId int)
 BEGIN

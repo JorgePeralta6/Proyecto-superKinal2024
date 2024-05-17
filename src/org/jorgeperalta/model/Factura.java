@@ -44,6 +44,8 @@ public class Factura {
         this.clienteId = clienteId;
         this.empleadoId = empleadoId;
     }
+    
+    
 
     public int getFacturaId() {
         return facturaId;
@@ -111,7 +113,7 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "Factura{" + "facturaId=" + facturaId + ", fecha=" + fecha + ", hora=" + hora + ", clienteId=" + clienteId + ", cliente=" + cliente + ", empleadoId=" + empleadoId + ", empleado=" + empleado + ", total=" + total + '}';
+        return "Id: " + facturaId;
     }
     
 }
