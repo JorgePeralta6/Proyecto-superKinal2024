@@ -7,7 +7,13 @@ package org.jorgeperalta.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import org.jorgeperalta.system.Main;
 
 /**
  * FXML Controller class
@@ -15,13 +21,29 @@ import javafx.fxml.Initializable;
  * @author Usuario
  */
 public class LoginController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    private Main stage;
     
+    @FXML
+    TextField tfUsuario;
+    @FXML
+    PasswordField tfPassword;
+    @FXML
+    Button btnIniciar, btnRegistrar;
+    
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnIniciar){
+        
+        }
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }    
+
+    public void setStage(Main stage) {
+        this.stage = stage;
+    }
+        
 }
