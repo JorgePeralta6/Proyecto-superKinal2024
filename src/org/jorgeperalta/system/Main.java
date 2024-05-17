@@ -19,6 +19,7 @@ import org.jorgeperalta.controller.FormClientesController;
 import org.jorgeperalta.controller.FormComprasController;
 import org.jorgeperalta.controller.FormDistribuidoresController;
 import org.jorgeperalta.controller.FormEmpleadosController;
+import org.jorgeperalta.controller.FormUsuarioController;
 import org.jorgeperalta.controller.MenuCargosController;
 import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
@@ -221,6 +222,20 @@ public class Main extends Application {
         }catch(Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
+        }
+    }
+    
+    
+    public void loginView(){
+        
+    }
+    
+    public void formUsuarioView(){
+        try{
+            FormUsuarioController formUsuarioView = (FormUsuarioController)switchScene("FormUsuarioView.fxml", 500, 750);
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 

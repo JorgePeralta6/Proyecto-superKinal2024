@@ -145,6 +145,7 @@ public class MenuClientesController implements Initializable {
             statement.setInt(1, cliId);
             statement.execute();
         }catch(SQLException e){
+            SuperKinalAlert.getInstance().mostrarAlertaInfo(500);
             System.out.println(e.getMessage());
         }finally{
             try{

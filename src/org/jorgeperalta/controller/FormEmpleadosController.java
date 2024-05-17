@@ -74,6 +74,9 @@ public class FormEmpleadosController implements Initializable {
                     tfNombreEmpleado.requestFocus();
                     return;
                 }
+            }else if(op ==3){
+                agregarEmpleado();
+                //formUsuarioView();
             }
         }
     }

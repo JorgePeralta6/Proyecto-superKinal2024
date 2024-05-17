@@ -26,6 +26,7 @@ import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.dto.EmpleadoDTO;
 import org.jorgeperalta.model.Empleado;
 import org.jorgeperalta.system.Main;
+import org.jorgeperalta.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -152,6 +153,7 @@ public class MenuEmpleadosController implements Initializable {
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
+            SuperKinalAlert.getInstance().mostrarAlertaInfo(500);
         }finally{
             try{
                 if(statement != null){

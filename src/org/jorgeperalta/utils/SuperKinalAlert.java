@@ -41,7 +41,26 @@ public class SuperKinalAlert {
             alert.setHeaderText("Campos Pendientes");
             alert.setContentText("El registro se ha creado");
             alert.showAndWait();
+        }else if(code == 602){
+            Alert alert = new Alert (Alert.AlertType.WARNING);
+            alert.setTitle("Usuario incorrecto");
+            alert.setHeaderText("Usuario incorrecto");
+            alert.setContentText("Verifique el usuario");
+            alert.showAndWait();
+        }else if(code == 005){
+            Alert alert = new Alert (Alert.AlertType.WARNING);
+            alert.setTitle("Contraseña Incoreccta");
+            alert.setHeaderText("Contraseña Incorrecta");
+            alert.setContentText("Verifique la contraseña");
+            alert.showAndWait();
+        } else if (code ==500){
+            Alert alert = new Alert (Alert.AlertType.WARNING);
+            alert.setTitle("No es posible eliminar");
+            alert.setHeaderText("No es posible eliminar");
+            alert.setContentText("No se puede eliminar el registro porque es referente en otra tabla");
+            alert.showAndWait();     
         }
+        
     }
     
     public Optional<ButtonType> mostrarAlertaConfirmacion(int code){

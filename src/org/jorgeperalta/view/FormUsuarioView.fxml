@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.FormUsuarioController">
    <children>
@@ -17,7 +18,15 @@
       <TextField fx:id="tfUsuario" layoutX="153.0" layoutY="264.0" promptText="Usuario" />
       <TextField fx:id="tfPassword" layoutX="153.0" layoutY="350.0" promptText="Password" />
       <ComboBox fx:id="cmbEmpleado" layoutX="153.0" layoutY="444.0" prefWidth="150.0" />
-      <Button fx:id="btnRegistrar" layoutX="366.0" layoutY="658.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Registrar" />
+      <Button fx:id="btnRegistrar" layoutX="343.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Registrar" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font></Button>
       <ComboBox fx:id="cmbNivelAcceso" layoutX="153.0" layoutY="550.0" prefWidth="150.0" />
+      <Button fx:id="btnEmpleado" layoutX="116.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 15;" text="Agregar Empleado" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

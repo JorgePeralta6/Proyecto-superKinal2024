@@ -33,13 +33,14 @@ import org.jorgeperalta.utils.PasswordUtils;
  */
 public class FormUsuarioController implements Initializable {
     private Main stage;
+    private int op;
     
     @FXML
     TextField tfUsuario, tfPassword;
     @FXML
     ComboBox cmbEmpleado, cmbNivelAcceso;
     @FXML
-    Button btnRegistrar;
+    Button btnRegistrar, btnEmpleado;
     
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
@@ -55,6 +56,9 @@ public class FormUsuarioController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegistrar){
             agregarUsuario();
+            //stage.loginView();
+        }else if(event.getSource() == btnEmpleado){
+            stage.formEmpleadosView(3);
         }
     }
     
@@ -165,5 +169,11 @@ public class FormUsuarioController implements Initializable {
     public void setStage(Main stage) {
         this.stage = stage;
     }
+
+    public void setOp(int op) {
+        this.op = op;
+    }
+    
+    
     
 }

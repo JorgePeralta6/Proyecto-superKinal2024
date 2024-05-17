@@ -145,6 +145,7 @@ public class MenuDistribuidoresController implements Initializable {
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
+            SuperKinalAlert.getInstance().mostrarAlertaInfo(500);
         }finally{
             try{
                 if(statement != null){
