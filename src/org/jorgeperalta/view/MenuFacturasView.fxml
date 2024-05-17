@@ -48,7 +48,6 @@
             <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Regresar" GridPane.halignment="CENTER" />
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button fx:id="btnVaciar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Vaciar Form" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

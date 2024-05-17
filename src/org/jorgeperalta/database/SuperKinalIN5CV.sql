@@ -147,6 +147,12 @@ insert into Clientes (nombre, apellido, telefono, direccion, nit) values
     ('Roberto', 'Arevalo', '4459-9901', 'Quetzaltenango', '23333567');
     
 
+create table NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
 create table Usuarios (
 	usuarioId int not null auto_increment,
     usuario varchar(30) not null,
@@ -158,10 +164,4 @@ create table Usuarios (
 		references NivelesAcceso(nivelAccesoId),
 	constraint FK_Usuarios_Empleados foreign key Usuarios(empleadoId)
 		references Empleados(empleadoId)
-);
-
-create table NivelesAcceso(
-	nivelAccesoId int not null auto_increment,
-    nivelAcceso varchar(40) not null,
-    primary key PK_nivelAccesoId(nivelAccesoId)
 );
