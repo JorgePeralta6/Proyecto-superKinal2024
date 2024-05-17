@@ -85,7 +85,7 @@ public class MenuProductosController implements Initializable {
                 stage.menuPrincipalView();
             } else if (event.getSource() == btnBuscar) {
                 tblProductos.getItems().clear();
-                if (tfProductoId2.getText().isEmpty()) {
+                if (tfProductoId.getText().isEmpty()) {
                     cargarLista();
                 } else {
                     tblProductos.getItems().add(buscarProducto());

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.FormUsuarioController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoUsuarioView.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfUsuario" layoutX="153.0" layoutY="279.0" />
+      <TextField fx:id="tfPassword" layoutX="153.0" layoutY="399.0" />
+      <ComboBox fx:id="cmbEmpleado" layoutX="153.0" layoutY="520.0" prefWidth="150.0" />
+      <Button fx:id="btnRegistrar" layoutX="196.0" layoutY="676.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Registrar" />
+   </children>
+</AnchorPane>

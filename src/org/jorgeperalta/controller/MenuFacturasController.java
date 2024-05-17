@@ -318,7 +318,6 @@ public class MenuFacturasController implements Initializable {
         cmbEmpleado.setItems(listarEmpleados());
         cargarDatos();
         tfFecha.setText(LocalDate.now().toString());
-
         tfHora.setText(LocalTime.now().toString());
     }  
     

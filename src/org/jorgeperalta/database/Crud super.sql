@@ -706,3 +706,24 @@ DELIMITER $$
 		END $$
 DELIMITER ;
 -- Apoyo
+
+
+-- Agregar Usuario
+delimiter $$
+create procedure sp_agregarUsuarios(us varchar(40), con varchar(100), nivAccId int, empId int)
+begin
+	insert into Usuarios(usuario, contrasenia, nivelAccesoId, empleadoId) values
+		(us, con, nivAccId, empId);
+end $$
+delimiter ;
+
+-- Buscar Usuario
+delimiter $$
+create procedure sp_buscarUsuarios(us varchar(30))
+begin
+	select * from Usuarios
+		where usuario = us;
+end $$
+delimiter ;
+
+select * from nivelesAcceso;
