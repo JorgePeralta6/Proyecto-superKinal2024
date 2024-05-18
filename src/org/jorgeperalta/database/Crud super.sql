@@ -592,7 +592,7 @@ END $$
 DELIMITER ;
 
 call sp_agregarTicketSoporte('Problema del wifi', 1, 1);
-call sp_listarTicketSoporte();
+
 
 DELIMITER $$
 create procedure sp_listarTicketSoporte()

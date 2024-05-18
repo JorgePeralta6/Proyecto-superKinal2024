@@ -40,6 +40,38 @@ public class FormComprasController implements Initializable {
     @FXML
     Button btnGuardar, btnCancelar;
     
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnCancelar){
+            stage.menuComprasView();
+        }else if(event.getSource() == btnGuardar){
+            if(op == 1){
+                 if(!tfFechaCompra.getText().equals("")){
+                    agregarCompra();
+                    stage.menuComprasView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfFechaCompra.requestFocus();
+                    return;
+                }  
+            }else if(op == 2){
+                if(!tfFechaCompra.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
+                        editarCompra();
+                        CompraDTO.getCompraDTO().setCompra(null);
+                        stage.menuComprasView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfFechaCompra.requestFocus();
+                    return;
+                }
+                
+            }
+
+        }
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if(CompraDTO.getCompraDTO().getCompra() != null){
@@ -100,39 +132,6 @@ public class FormComprasController implements Initializable {
             }catch(SQLException e){
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnCancelar){
-            stage.menuComprasView();
-            CompraDTO.getCompraDTO().setCompra(null);
-        }else if(event.getSource() == btnGuardar){
-            if(op == 1){
-                 if(!tfFechaCompra.getText().equals("")){
-                    agregarCompra();
-                    stage.menuComprasView();
-                }else{
-                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfFechaCompra.requestFocus();
-                    return;
-                }  
-            }else if(op == 2){
-                if(!tfFechaCompra.getText().equals("")){
-                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
-                        editarCompra();
-                        CompraDTO.getCompraDTO().setCompra(null);
-                        stage.menuComprasView();
-                    }
-                }else{
-                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfFechaCompra.requestFocus();
-                    return;
-                }
-                
-            }
-
         }
     }
 

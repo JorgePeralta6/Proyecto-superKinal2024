@@ -132,7 +132,7 @@ public class MenuComprasController implements Initializable {
         return FXCollections.observableList(compras);
     }
      
-        public void eliminarCompra(int comId){
+    public void eliminarCompra(int comId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_eliminarCompra(?)";
@@ -140,8 +140,8 @@ public class MenuComprasController implements Initializable {
             statement.setInt(1, comId);
             statement.execute();
         }catch(SQLException e){
-            System.out.println(e.getMessage());
             SuperKinalAlert.getInstance().mostrarAlertaInfo(500);
+            System.out.println(e.getMessage());
         }finally{
             try{
                 if(statement != null){

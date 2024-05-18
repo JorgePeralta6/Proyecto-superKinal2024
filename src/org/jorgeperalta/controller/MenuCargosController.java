@@ -51,7 +51,6 @@ public class MenuCargosController implements Initializable {
     TextField tfCargoId;
     
     
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarLista();
