@@ -20,6 +20,7 @@ import org.jorgeperalta.controller.FormComprasController;
 import org.jorgeperalta.controller.FormDistribuidoresController;
 import org.jorgeperalta.controller.FormEmpleadosController;
 import org.jorgeperalta.controller.FormUsuarioController;
+import org.jorgeperalta.controller.LoginController;
 import org.jorgeperalta.controller.MenuCargosController;
 import org.jorgeperalta.controller.MenuCategoriaProductosController;
 import org.jorgeperalta.controller.MenuClientesController;
@@ -53,7 +54,7 @@ public class Main extends Application {
         Initializable resultado = null;
         FXMLLoader loader = new FXMLLoader();
         
-        InputStream file = Main.class.getResourceAsStream("/org/jorgeperalta/view/" + fxmlName);
+        InputStream file = Main.class.getResourceAsStream(URLVIEW + fxmlName);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
         loader.setLocation(Main.class.getResource(URLVIEW + fxmlName));
         
@@ -227,15 +228,21 @@ public class Main extends Application {
     
     
     public void loginView(){
-        
+        try{
+            LoginController loginView = (LoginController)switchScene("LoginView.fxml", 500, 750);
+            loginView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
     public void formUsuarioView(){
         try{
             FormUsuarioController formUsuarioView = (FormUsuarioController)switchScene("FormUsuarioView.fxml", 500, 750);
-            
+            formUsuarioView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

@@ -33,7 +33,6 @@ import org.jorgeperalta.utils.PasswordUtils;
  */
 public class FormUsuarioController implements Initializable {
     private Main stage;
-    private int op;
     
     @FXML
     TextField tfUsuario, tfPassword;
@@ -56,7 +55,7 @@ public class FormUsuarioController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegistrar){
             agregarUsuario();
-            //stage.loginView();
+            stage.loginView();
         }else if(event.getSource() == btnEmpleado){
             stage.formEmpleadosView(3);
         }
@@ -170,9 +169,6 @@ public class FormUsuarioController implements Initializable {
         this.stage = stage;
     }
 
-    public void setOp(int op) {
-        this.op = op;
-    }
     
     
     

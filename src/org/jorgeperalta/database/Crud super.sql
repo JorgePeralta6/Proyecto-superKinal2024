@@ -738,3 +738,5 @@ delimiter ;
 call sp_listarNivelAcceso();
 
 select * from nivelesAcceso;
+
+select * from Usuarios;

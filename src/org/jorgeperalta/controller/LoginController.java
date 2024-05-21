@@ -51,6 +51,7 @@ public class LoginController implements Initializable {
             if(op == 0){
                 if(usuario != null){
                     if(PasswordUtils.getInstance().checkPassword(tfPassword.getText(), usuario.getContrasenia())){     
+                        SuperKinalAlert.getInstance().alertaSaludo(usuario.getUsuario());
                         if(usuario.getNivelAccesoId() == 1){
                             btnRegistrar.setDisable(false);
                             btnIniciar.setText("Ir al menu");
@@ -68,7 +69,7 @@ public class LoginController implements Initializable {
                 stage.menuPrincipalView();
             }
         } else if(event.getSource() == btnRegistrar){
-            //stage.formUsuarioView();
+            stage.formUsuarioView();
         }
     }
     

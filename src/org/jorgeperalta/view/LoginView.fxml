@@ -6,17 +6,24 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.LoginController">
    <children>
-      <ImageView fitHeight="750.0" fitWidth="500.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="750.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/FondoLogin.png" />
          </image>
       </ImageView>
       <TextField fx:id="tfUsuario" layoutX="160.0" layoutY="256.0" prefHeight="32.0" prefWidth="149.0" promptText="Usuario" />
       <PasswordField fx:id="tfPassword" layoutX="160.0" layoutY="375.0" promptText="Password" />
-      <Button fx:id="btnIniciar" layoutX="122.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="189.0" text="Iniciar Sesion" />
-      <Button fx:id="btnRegistrar" layoutX="122.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="98.0" prefWidth="189.0" text="Registrar Usuario" />
+      <Button fx:id="btnIniciar" layoutX="174.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="122.0" text="Iniciar Sesion" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnRegistrar" layoutX="174.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="122.0" text="Registrar Usuario" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>
