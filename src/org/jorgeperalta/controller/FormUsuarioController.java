@@ -34,36 +34,34 @@ import org.jorgeperalta.utils.PasswordUtils;
 public class FormUsuarioController implements Initializable {
     private Main stage;
     
+    private static Connection conexion = null;
+    private static PreparedStatement statement = null;
+    private static ResultSet resultSet = null;
+    
     @FXML
     TextField tfUsuario, tfPassword;
     @FXML
     ComboBox cmbEmpleado, cmbNivelAcceso;
     @FXML
     Button btnRegistrar, btnEmpleado;
-    
-    private static Connection conexion = null;
-    private static PreparedStatement statement = null;
-    private static ResultSet resultSet = null;
-    
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle rb) {
         cmbEmpleado.setItems(listarEmpleados());
         cmbNivelAcceso.setItems(listarNivelesAcceso());
-    }    
+    }
     
-    @FXML
+        @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegistrar){
             agregarUsuario();
-            stage.loginView();
         }else if(event.getSource() == btnEmpleado){
             stage.formEmpleadosView(3);
         }
     }
     
     public ObservableList<NivelAcceso> listarNivelesAcceso(){
-        ArrayList<NivelAcceso> nivelesAcceso = null;
-        
+        ArrayList<NivelAcceso> nivelesAcceso = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_listarNivelAcceso()";
@@ -73,19 +71,18 @@ public class FormUsuarioController implements Initializable {
             while(resultSet.next()){
                 int nivelAccesoId = resultSet.getInt("nivelAccesoId");
                 String nivelAcceso = resultSet.getString("nivelAcceso");
-                
+
                 nivelesAcceso.add(new NivelAcceso(nivelAccesoId, nivelAcceso));
             }
-            
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }finally{
             try{
-                if(statement != null){
-                    statement.close();
-                }
                 if(resultSet != null){
                     resultSet.close();
+                }
+                if(statement != null){
+                    statement.close();
                 }
                 if(conexion != null){
                     conexion.close();
@@ -94,11 +91,9 @@ public class FormUsuarioController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        
         return FXCollections.observableArrayList(nivelesAcceso);
-        
     }
-
+    
     public ObservableList<Empleado> listarEmpleados(){
         ArrayList<Empleado> empleados = new ArrayList<>();
         try{
@@ -143,12 +138,13 @@ public class FormUsuarioController implements Initializable {
     public void agregarUsuario(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarUsuario(?,?,?,?)";
+            String sql = "call sp_agregarUsuario(?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfUsuario.getText());
             statement.setString(2, PasswordUtils.getInstance().encryptedPassword(tfPassword.getText()));
             statement.setInt(3, ((NivelAcceso)cmbNivelAcceso.getSelectionModel().getSelectedItem()).getNivelAccesoId());
             statement.setInt(4, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }finally{
@@ -164,12 +160,8 @@ public class FormUsuarioController implements Initializable {
             }
         }
     }
-
-    public void setStage(Main stage) {
+    
+    public void setStage(Main stage){
         this.stage = stage;
     }
-
-    
-    
-    
 }

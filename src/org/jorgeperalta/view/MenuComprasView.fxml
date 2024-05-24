@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jorgeperalta.controller.MenuComprasController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jorgeperalta.controller.MenuComprasController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -38,11 +37,13 @@
             <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <TableView fx:id="tblCompras" layoutX="192.0" layoutY="314.0" prefHeight="345.0" prefWidth="726.0">
+      <TableView fx:id="tblCompras" layoutX="42.0" layoutY="314.0" prefHeight="345.0" prefWidth="876.0">
         <columns>
-          <TableColumn fx:id="colCompraId" prefWidth="217.0" text="CompraId" />
-          <TableColumn fx:id="colFechaCompra" prefWidth="293.0" text="FechaCompra" />
-            <TableColumn fx:id="colTotalCompra" prefWidth="215.0" text="TotalCompra" />
+          <TableColumn fx:id="colCantidadCompra" prefWidth="142.0" text="CantidadCompra" />
+          <TableColumn fx:id="colProducto" prefWidth="231.0" text="Producto" />
+            <TableColumn fx:id="colCompraId" prefWidth="137.0" text="CompraId" />
+            <TableColumn fx:id="colFechaCompra" prefWidth="221.0" text="FechaCompra" />
+            <TableColumn fx:id="colTotalCompra" prefWidth="144.0" text="TotalCompra" />
         </columns>
       </TableView>
       <Button fx:id="btnBuscar" layoutX="848.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="30.0">

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.dto.CompraDTO;
 import org.jorgeperalta.model.Compra;
+import org.jorgeperalta.model.DetalleCompra;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.utils.SuperKinalAlert;
 
@@ -35,7 +36,7 @@ public class FormComprasController implements Initializable {
     private static PreparedStatement statement;
     
     @FXML
-    TextField tfCompraId, tfFechaCompra, tfTotalCompra;
+    TextField tfCompraId, tfFechaCompra, tfTotalCompra, tfProducto, tfCantidadCompra;
         
     @FXML
     Button btnGuardar, btnCancelar;
@@ -82,10 +83,12 @@ public class FormComprasController implements Initializable {
     public void agregarCompra(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarCompra(?,?)";
+            String sql = "call sp_agregarCompra(?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfFechaCompra.getText());
             statement.setString(2, tfTotalCompra.getText());
+            statement.setInt(3, Integer.parseInt(tfCantidadCompra.getText()));
+            statement.setInt(4, Integer.parseInt(tfProducto.getText()));
             statement.execute();
 
         }catch(SQLException e){
@@ -103,6 +106,7 @@ public class FormComprasController implements Initializable {
             }
         }
     }
+ 
     
     public void cargarDatos(Compra compra){
         tfCompraId.setText(Integer.toString(compra.getCompraId()));
@@ -113,11 +117,13 @@ public class FormComprasController implements Initializable {
     public void editarCompra(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarCompra(?,?,?)";
+            String sql = "call sp_editarDetalleCompra(?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfCompraId.getText()));
             statement.setString(2, tfFechaCompra.getText());
             statement.setString(3, tfTotalCompra.getText());
+            statement.setInt(4, Integer.parseInt(tfCantidadCompra.getText()));
+            statement.setInt(5, Integer.parseInt(tfProducto.getText()));
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());

@@ -6,6 +6,7 @@
 package org.jorgeperalta.controller;
 
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +29,8 @@ import org.jorgeperalta.dto.CompraDTO;
 import org.jorgeperalta.model.Compra;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.utils.SuperKinalAlert;
+import org.jorgeperalta.model.DetalleCompra;
+import org.jorgeperalta.model.Producto;
 
 /**
  * FXML Controller class
@@ -44,7 +47,7 @@ public class MenuComprasController implements Initializable {
     @FXML
     TableView tblCompras;
     @FXML
-    TableColumn colCompraId, colFechaCompra, colTotalCompra;
+    TableColumn colCompraId, colFechaCompra, colTotalCompra, colProducto, colCantidadCompra;
     @FXML
     Button btnAgregar, btnEditar, btnRegresar, btnEliminar, btnBuscar;
     @FXML
@@ -75,9 +78,11 @@ public class MenuComprasController implements Initializable {
                 cargarDatos();
             }else{
                 tblCompras.getItems().add(buscarCompra());
-                colCompraId.setCellValueFactory(new PropertyValueFactory<Compra, Integer>("compraId"));
-                colFechaCompra.setCellValueFactory(new PropertyValueFactory<Compra, String>("fechaCompra"));
-                colTotalCompra.setCellValueFactory(new PropertyValueFactory<Compra, String>("totalCompra"));
+                colCompraId.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("compraId"));
+                colFechaCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("fechaCompra"));
+                colTotalCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("totalCompra"));
+                colProducto.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("Producto"));
+                colCantidadCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("cantidadCompra"));
             }
         }
     }
@@ -92,16 +97,16 @@ public class MenuComprasController implements Initializable {
         colCompraId.setCellValueFactory(new PropertyValueFactory<Compra, Integer>("compraId"));
         colFechaCompra.setCellValueFactory(new PropertyValueFactory<Compra, String>("fechaCompra"));
         colTotalCompra.setCellValueFactory(new PropertyValueFactory<Compra, String>("totalCompra"));
+        colProducto.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("Producto"));
+        colCantidadCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("cantidadCompra"));
     }
     
-    
-    
-    public ObservableList<Compra> listarCompras(){
-            ArrayList<Compra> compras = new ArrayList<>();
+    public ObservableList<DetalleCompra> listarCompras(){
+            ArrayList<DetalleCompra> detalleCompra = new ArrayList<>();
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarCompra()";
+            String sql = "call sp_listarDetalleCompra()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
@@ -109,8 +114,10 @@ public class MenuComprasController implements Initializable {
                 int compraId = resultSet.getInt("compraId");
                 String fecha = resultSet.getString("fechaCompra");
                 double total = resultSet.getDouble("totalCompra");
+                int cantidadCompra = resultSet.getInt("cantidadCompra");
+                String producto = resultSet.getString("Producto");
                 
-                compras.add(new Compra(compraId, fecha, total));
+                detalleCompra.add(new DetalleCompra(cantidadCompra, producto, compraId, fecha, total));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -129,7 +136,7 @@ public class MenuComprasController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        return FXCollections.observableList(compras);
+        return FXCollections.observableList(detalleCompra);
     }
      
     public void eliminarCompra(int comId){
@@ -156,11 +163,11 @@ public class MenuComprasController implements Initializable {
         }
     }
         
-        public Compra buscarCompra(){
-        Compra compra = null;
+    public DetalleCompra buscarCompra(){
+        DetalleCompra detalleCompra = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_buscarCompra(?)";
+            String sql = "call sp_buscarDetalleCompra(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfCompraId.getText()));
             resultSet = statement.executeQuery();
@@ -169,8 +176,10 @@ public class MenuComprasController implements Initializable {
                 int compraId = resultSet.getInt("compraId");
                 String fecha = resultSet.getString("fechaCompra");
                 double total = resultSet.getDouble("totalCompra");
+                int cantidad = resultSet.getInt("cantidadCompra");
+                String producto = resultSet.getString("Producto");
                 
-                compra = (new Compra(compraId, fecha, total));
+                detalleCompra = (new DetalleCompra(cantidad, producto, compraId, fecha, total));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -189,8 +198,50 @@ public class MenuComprasController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        return compra;
+        return detalleCompra;
     }  
+    
+     public ObservableList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
+        try {
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_listarProducto()";
+            statement = conexion.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int Id = resultSet.getInt("productoId");
+                String nombre = resultSet.getString("nombreProducto");
+                String descripcion = resultSet.getString("descripcionProducto");
+                int stock = resultSet.getInt("cantidadStock");
+                double precioU = resultSet.getDouble("precioVentaUnitario");
+                double precioM = resultSet.getDouble("precioVentaMayor");
+                double precioC = resultSet.getDouble("precioCompra");
+                Blob imagen = resultSet.getBlob("imagenProducto");
+                String distribuidor = resultSet.getString("Distribuidor");
+                String categoria = resultSet.getString("Categoria");
+
+                productos.add(new Producto(Id, nombre, descripcion, stock, precioU, precioM, precioC, imagen, distribuidor, categoria));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return FXCollections.observableList(productos);
+    }
     
     public Main getStage() {
         return stage;

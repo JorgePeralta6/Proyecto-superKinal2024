@@ -113,52 +113,6 @@ END $$
 DELIMITER ;
 -- Cargos
 
--- Compras
-DELIMITER $$
-create procedure sp_agregarCompra(in fecCom date, in totCom decimal (10,2))
-	BEGIN 
-		insert into Compras (fechaCompra, totalCompra) values
-			(fecCom, totCom);
-    END $$
-DELIMITER ;
-call sp_agregarCompra('2023-05-12', 122.20);
-
-DELIMITER $$
-create procedure sp_listarCompra()
-	BEGIN
-		select * from Compras;
-    END $$
-DELIMITER ;
-call sp_listarCompra();
-
-DELIMITER $$
-create procedure sp_buscarCompra(in comId int)
-	BEGIN	
-		select * from Compras 
-			where compraId = comId;
-    END $$
-DELIMITER ;
-
-DELIMITER $$
-create procedure sp_eliminarCompra(in comId int)
-	BEGIN 
-		delete from Compras
-        where compraId = comId;
-    END $$
-DELIMITER ;
-
-DELIMITER $$
-create procedure sp_editarCompra(in comId int,in fecCom date,in totCom decimal (10,2))
-	BEGIN 
-		update Compras
-			set 
-				fechaCompra = fecCom,
-                totalCompra = totCom
-                where compraId = comId;
-    END $$
-DELIMITER ;
--- Compras
-
 -- CategoriaProductos
 DELIMITER $$
 create procedure sp_agregarCategoriaProducto(in nombC varchar(30), descC varchar(100))
@@ -413,26 +367,28 @@ create procedure sp_agregarDetalleCompra(in canC int, in proId int, in comId int
 			(canC, proId, comId);
     END $$
 DELIMITER ;
+call sp_agregarDetalleCompra(101, 1, 2);
 
 DELIMITER $$
 create procedure sp_listarDetalleCompra()
 	BEGIN
-		select
-			DC.detalleCompraId,
-            DC.cantidadCompra,
-            DC.productoId,
-            DC.compraId
-				from DetalleCompra DC;
+		select DE.detalleCompraId, CO.compraId, CO.fechaCompra,CO.totalCompra, DE.cantidadCompra, 
+        DE.productoId as 'Producto' from DetalleCompra DE
+        join Compras CO on DE.compraId = CO.compraId;
     END $$
 DELIMITER ;
+call sp_listarDetalleCompra();
 
 DELIMITER $$
 create procedure sp_buscarDetalleCompra(in detCId int)
 	BEGIN
-		select * from DetalleCompra
-				where detalleCompraId = detCId;
+		select CO.compraId, CO.fechaCompra,CO.totalCompra, DE.cantidadCompra, 
+        DE.productoId as 'Producto' from DetalleCompra DE
+        join Compras CO on DE.compraId = CO.compraId
+		where CO.compraId = detCId;
     END $$
 DELIMITER ;
+call sp_buscarDetalleCompra(6);
 
 DELIMITER $$
 create procedure sp_eliminarDetalleCompra(in detCId int)
@@ -444,14 +400,22 @@ create procedure sp_eliminarDetalleCompra(in detCId int)
 DELIMITER ;
 
 DELIMITER $$
-create procedure sp_editarDetalleCompra(in detCId int, in canC int, in proId int, in comId int)
+create procedure sp_editarDetalleCompra(in comId int, in fec date, in tot decimal(10,2), in canC int, in proId int)
 	BEGIN
+    start transaction;
+    
+		update Compras
+			set
+            fechaCompra = fec,
+            totalCompra = tot
+				where compraId = comId;
+                
 		update DetalleCompra
 			set
 				cantidadCompra = canC,
-                productoId = proId,
-                compraId = comId
-					where detalleCompraId = detCId;
+                productoId = proId
+					where compraId = comId;
+	commit;
     END $$
 DELIMITER ;
 -- DetalleCompra
@@ -709,6 +673,56 @@ DELIMITER $$
 DELIMITER ;
 -- Apoyo
 
+-- Compras
+DELIMITER $$
+create procedure sp_agregarCompra(in fecCom date, in totCom decimal (10,2),in canC int,in proId int)
+	BEGIN 
+		declare po int;
+		insert into Compras (fechaCompra, totalCompra) values
+			(fecCom, totCom);
+            set po = last_insert_id();
+            call sp_agregarDetalleCompra(canC, proId,po);
+    END $$
+DELIMITER ;
+call sp_agregarCompra('2023-05-12', 122.20, 123, 1);
+
+DELIMITER $$
+create procedure sp_listarCompra()
+	BEGIN
+		select * from Compras;
+    END $$
+DELIMITER ;
+call sp_listarCompra();
+
+DELIMITER $$
+create procedure sp_buscarCompra(in comId int)
+	BEGIN	
+		select * from Compras 
+			where compraId = comId;
+    END $$
+DELIMITER ;
+call sp_buscarCompra(2);
+
+DELIMITER $$
+create procedure sp_eliminarCompra(in comId int)
+	BEGIN 
+		delete from Compras
+        where compraId = comId;
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+create procedure sp_editarCompra(in comId int,in fecCom date,in totCom decimal (10,2))
+	BEGIN 
+		update Compras
+			set 
+				fechaCompra = fecCom,
+                totalCompra = totCom
+                where compraId = comId;
+    END $$
+DELIMITER ;
+-- Compras
+
 
 -- Agregar Usuario
 delimiter $$
@@ -718,6 +732,7 @@ begin
 		(us, con, nivAccId, empId);
 end $$
 delimiter ;
+call sp_agregarUsuario('jperalta', '1234', 1, 1);
 
 -- Buscar Usuario
 delimiter $$
