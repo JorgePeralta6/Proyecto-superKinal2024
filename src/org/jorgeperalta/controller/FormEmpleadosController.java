@@ -51,7 +51,11 @@ public class FormEmpleadosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
-            stage.menuEmpleadosView();
+            if(op == 3){
+                stage.formUsuarioView();
+            }else{
+                stage.menuEmpleadosView();
+            }
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
                 if(!tfNombreEmpleado.getText().equals("") && !tfApellidoEmpleado.getText().equals("") && !tfSueldo.getText().equals("") && !tfHoraEntrada.getText().equals("") && !tfHoraSalida.getText().equals("")){

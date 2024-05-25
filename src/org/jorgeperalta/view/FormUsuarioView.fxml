@@ -18,12 +18,17 @@
       <TextField fx:id="tfUsuario" layoutX="153.0" layoutY="264.0" promptText="Usuario" />
       <TextField fx:id="tfPassword" layoutX="153.0" layoutY="350.0" promptText="Password" />
       <ComboBox fx:id="cmbEmpleado" layoutX="153.0" layoutY="444.0" prefWidth="150.0" />
-      <Button fx:id="btnRegistrar" layoutX="343.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Registrar" textAlignment="CENTER">
+      <Button fx:id="btnRegistrar" layoutX="368.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Registrar" textAlignment="CENTER">
          <font>
             <Font name="Verdana" size="16.0" />
          </font></Button>
       <ComboBox fx:id="cmbNivelAcceso" layoutX="153.0" layoutY="550.0" prefWidth="150.0" />
-      <Button fx:id="btnEmpleado" layoutX="116.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 15;" text="Agregar Empleado" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btnEmpleado" layoutX="84.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 15;" text="Agregar Empleado" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVolver" layoutX="228.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 15;" text="Volver al Login" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>

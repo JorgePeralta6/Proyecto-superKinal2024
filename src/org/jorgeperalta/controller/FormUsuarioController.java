@@ -43,7 +43,7 @@ public class FormUsuarioController implements Initializable {
     @FXML
     ComboBox cmbEmpleado, cmbNivelAcceso;
     @FXML
-    Button btnRegistrar, btnEmpleado;
+    Button btnRegistrar, btnEmpleado, btnVolver;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -57,6 +57,8 @@ public class FormUsuarioController implements Initializable {
             agregarUsuario();
         }else if(event.getSource() == btnEmpleado){
             stage.formEmpleadosView(3);
+        }else if(event.getSource() == btnVolver){
+            stage.loginView();
         }
     }
     
