@@ -19,7 +19,7 @@
             <Image url="@../image/FondoMenuProductos.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfProductoId2" editable="false" layoutX="395.0" layoutY="91.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="tfProductoId2" editable="false" layoutX="395.0" layoutY="91.0" prefHeight="25.0" prefWidth="193.0" />
       <TextField fx:id="tfNombreProducto" layoutX="618.0" layoutY="91.0" onAction="#handleButtonAction" />
       <TextField fx:id="tfStock" layoutX="811.0" layoutY="91.0" onAction="#handleButtonAction" />
       <TextField fx:id="tfPrecioU" layoutX="14.0" layoutY="221.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="258.0" />

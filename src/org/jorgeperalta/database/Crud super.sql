@@ -277,7 +277,7 @@ create procedure sp_editarProducto(in proId int, in nom varchar(50),in des varch
 		update Productos	
 			set 
             nombreProducto = nom,
-            descripcionProduto = des,
+            descripcionProducto = des,
             cantidadStock = can,
             precioVentaUnitario = preU,
             precioVentaMayor = preM,
@@ -486,14 +486,19 @@ DELIMITER ;
 
 -- Facturas
 DELIMITER $$
-	create procedure sp_AgregarFacturas (in fech date, in hor time, in tot decimal (10, 2), in cliId int, in empId int)
+	create procedure sp_AgregarFacturas (in fech date, in hor time, in cliId int, in empId int, in proId int)
 		BEGIN 
-			insert into Facturas (fecha, hora, total, clienteId, empleadoId)
-				values (fech, hor, tot, cliId, empId);
+			declare po int;
+            insert into Facturas (fecha, hora, clienteId, empleadoId)values 
+				(fech, hor, cliId, empId);
+                set po = last_insert_id();
+                call sp_agregarDetalleFactura(proId, po);
+                update Productos
+                set cantidadStock = cantidadStock -1
+                where productoId = proId;
 		END $$
 DELIMITER ;
-
-call sp_AgregarFacturas('2023-04-23', '8:00:00', 45.90, 1, 1);
+call sp_AgregarFacturas('2023-04-23', '8:00:00', 1, 1, 1);
 
 DELIMITER $$
 create procedure sp_ListarFacturas ()
@@ -619,15 +624,20 @@ DELIMITER ;
 call sp_agregarDetalleFactura(1,1);
 
 DELIMITER $$
-	create procedure sp_ListarDetalleFactura  ()
-		BEGIN 
-			select 
-				DetalleFactura.detalleFacturaId,
-				DetalleFactura.facturaId,
-                DetalleFactura.productoId
-					FROM DetalleFactura;
-		END $$
+create procedure sp_ListarDetalleFactura  ()
+BEGIN 
+	select F.facturaId, F.fecha, F.hora,
+		concat(C.nombre, ' ', C.apellido) as 'Cliente',
+        concat(P.productoId, ' || ', P.nombreProducto) as 'Producto',
+        concat(E.nombreEmpleado, ' ', E.apellidoEmpleado) as 'Empleado',
+        F.total from DetalleFactura DF
+		join Facturas F on F.facturaId = DF.facturaId
+        join Clientes C on C.clienteId = F.clienteId
+        join Productos P on P.productoId = DF.productoId
+        join Empleados E on E.empleadoId = F.empleadoId;
+END $$
 DELIMITER ;
+call sp_ListarDetalleFactura();
 
 DELIMITER $$
 	create procedure sp_EliminarDetalleFactura   (in detaFacId int)
@@ -639,25 +649,39 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-	create procedure sp_BuscarDetalleFactura  (in detaFacId int)
-		BEGIN
-			select
-				DetalleFactura.facturaId,
-                DetalleFactura.productoId
-					from DetalleFactura 
-						where detalleFacturaId  = detaFacId;
-		END $$
+create procedure sp_BuscarDetalleFactura  (in detaFacId int)
+BEGIN
+	select F.facturaId, F.fecha, F.hora,
+	concat(C.nombre, ' ', C.apellido) as 'Cliente',
+	concat(P.productoId, ' || ', P.nombreProducto) as 'Producto',
+	concat(E.nombreEmpleado, ' ', E.apellidoEmpleado) as 'Empleado',
+	F.total from DetalleFactura DF
+	join Facturas F on F.facturaId = DF.facturaId
+	join Clientes C on C.clienteId = F.clienteId
+	join Productos P on P.productoId = DF.productoId
+	join Empleados E on E.empleadoId = F.empleadoId
+		where F.facturaId  = detaFacId;
+END $$
 DELIMITER ;
 
 DELIMITER $$
-	create procedure sp_EditarDetalleFactura  (in detaFacId int, in factId int, in proId int)
-		BEGIN
-			update DetalleFactura 
-				set	
-					facturaId = factId,
-					productoId = proId
-					where detalleFacturaId  = detaFacId;
-		END $$
+create procedure sp_EditarDetalleFactura(in facId int, in fecha date, in hora time, in cliId int,in empId int, in proId int)
+BEGIN
+	start transaction;
+		update Facturas
+			set
+            fecha = fec,
+            hora = hor,
+            clienteId = cliId,
+            empleadoId = empId
+				where facturaId = facId;
+                
+		update DetalleFactura
+			set
+			productoId = proId
+				where facturaId = facId;
+	commit;
+END $$
 DELIMITER ;
 -- DetalleFactura
 
@@ -723,6 +747,14 @@ create procedure sp_editarCompra(in comId int,in fecCom date,in totCom decimal (
 DELIMITER ;
 -- Compras
 
+-- Listar NivelAcceso
+delimiter $$
+create procedure sp_listarNivelAcceso()
+begin
+	select * from nivelesAcceso;
+end $$
+delimiter ;
+call sp_listarNivelAcceso();
 
 -- Agregar Usuario
 delimiter $$
@@ -732,7 +764,7 @@ begin
 		(us, con, nivAccId, empId);
 end $$
 delimiter ;
-call sp_agregarUsuario('jperalta', '1234', 1, 1);
+-- call sp_agregarUsuario('jperalta', '1234', 1, 1);
 
 -- Buscar Usuario
 delimiter $$
@@ -743,14 +775,7 @@ begin
 end $$
 delimiter ;
 
--- Listar NivelAcceso
-delimiter $$
-create procedure sp_listarNivelAcceso()
-begin
-	select * from nivelesAcceso;
-end $$
-delimiter ;
-call sp_listarNivelAcceso();
+
 
 select * from nivelesAcceso;
 

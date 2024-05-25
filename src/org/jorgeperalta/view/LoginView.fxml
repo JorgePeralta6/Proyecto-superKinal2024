@@ -17,11 +17,11 @@
       </ImageView>
       <TextField fx:id="tfUsuario" layoutX="160.0" layoutY="256.0" prefHeight="32.0" prefWidth="149.0" promptText="Usuario" />
       <PasswordField fx:id="tfPassword" layoutX="160.0" layoutY="375.0" promptText="Password" />
-      <Button fx:id="btnIniciar" layoutX="174.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="122.0" text="Iniciar Sesion" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btnIniciar" layoutX="174.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #FE9D97; -fx-background-radius: 15;" text="Iniciar Sesion" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Verdana" size="14.0" />
          </font></Button>
-      <Button fx:id="btnRegistrar" layoutX="174.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="122.0" text="Registrar Usuario" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btnRegistrar" disable="true" layoutX="174.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="122.0" style="-fx-background-color: #FE9D97; -fx-background-radius: 15;" text="Registrar Usuario" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Verdana" size="14.0" />
          </font></Button>

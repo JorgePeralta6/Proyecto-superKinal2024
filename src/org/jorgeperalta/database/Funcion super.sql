@@ -2,11 +2,11 @@ use superKinalIN5CV;
  
 -- total -----
 DELIMITER $$
-	create procedure sp_asignarTotal(in tot decimal(10,2),in factID int)
+	create procedure sp_asignarTotal(in tot decimal(10,2),in factId int)
     begin
 		update Facturas
-			set total = tot
-            where facturaID = factID;
+			set total = tot * (1 + 0.12)
+            where facturaId = factId;
     end$$
 DELIMITER ;
  
@@ -50,12 +50,12 @@ DELIMITER ;
  
 -- funcion calcular total
 DELIMITER $$
-	create function fn_calcularTotal(factID int) returns decimal(10,2) deterministic
+	create function fn_calcularTotal(factId int) returns decimal(10,2) deterministic
     begin
 		declare total decimal(10,2) default 0.0;
         declare precio decimal(10,2);
         declare i int default 1;
-        declare curFacturaID, curProductoID int;
+        declare curFacturaId, curProductoId int;
         
         declare cursorDetalleFactura cursor for 
 			select DF.facturaId, DF.productoId from DetalleFactura DF;
@@ -64,7 +64,7 @@ DELIMITER $$
         
         totalLoop : loop
         
-        fetch cursorDetalleFactura into curFacturaID,curProductoID;
+        fetch cursorDetalleFactura into curFacturaId,curProductoId;
         
         if (factID = curFacturaId)then
 			set precio = (select P.precioVentaUnitario from Productos P where P.productoId = curProductoId);
@@ -79,7 +79,7 @@ DELIMITER $$
         
         end loop totalLoop;
         
-        call sp_asignarTotal(total,factID);
+        call sp_asignarTotal(total,factId);
         
         return total;
     end$$
@@ -93,7 +93,7 @@ DELIMITER $$
     for each row
     begin
 		declare total decimal(10,2);
-        set total = fn_calcularTotal(new.facturaID);
+        set total = fn_calcularTotal(new.facturaId);
     end$$
 DELIMITER ;
  

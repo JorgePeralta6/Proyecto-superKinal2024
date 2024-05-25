@@ -21,9 +21,8 @@ public class DetalleFactura extends Factura{
     public DetalleFactura() {
     }
 
-    public DetalleFactura(String factura, String producto, int facturaId, LocalDate fecha, LocalTime hora, double total, String cliente, String empleado) {
+    public DetalleFactura( int facturaId, LocalDate fecha, LocalTime hora,String cliente, String producto, String empleado, double total) {
         super(facturaId, fecha, hora, total, cliente, empleado);
-        this.factura = factura;
         this.producto = producto;
     }
 
@@ -62,6 +61,11 @@ public class DetalleFactura extends Factura{
 
     public void setProducto(String producto) {
         this.producto = producto;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleFactura{" + "detalleFacturaId=" + detalleFacturaId + ", factura=" + factura + ", productoId=" + productoId + ", producto=" + producto + '}';
     }
     
     

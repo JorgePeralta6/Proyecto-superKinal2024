@@ -100,19 +100,16 @@ public class MenuProductosController implements Initializable {
                     colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("Categoria"));
                 }
             } else if(event.getSource() == btnGuardar){
-            if(tfProductoId.getText().equals("")){
-                agregarProducto();
-                cargarLista();
-            }else{
-                if (!tfNombreProducto.getText().equals("") && !tfStock.getText().equals("") && !tfPrecioC.getText().equals("") && !tfPrecioU.getText().equals("") && !tfPrecioM.getText().equals("")) {
-                    editarProducto();
+            if(tfProductoId2.getText().equals("")){
+                    agregarProducto();
                     cargarLista();
-                }
-                
+                }else{
+                    editarProducto();
+                    cargarLista();   
                 }  
-            } else if(event.getSource() == btnVaciar){
+            }else if(event.getSource() == btnVaciar){
             vaciarCampos();
-            }
+                }
         } catch (Exception e) {
             e.printStackTrace();
             
@@ -394,7 +391,7 @@ public class MenuProductosController implements Initializable {
             if (imgCargar.getImage() == null) {
                 statement.setBinaryStream(8, null);
             } else {
-                InputStream img = new FileInputStream(imageFile);
+                InputStream img = new FileInputStream(files.get(0));
                 statement.setBinaryStream(8, img);
             }
             statement.setInt(9, ((Distribuidor) cmbDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId());

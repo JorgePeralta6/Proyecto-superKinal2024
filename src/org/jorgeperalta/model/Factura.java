@@ -44,6 +44,10 @@ public class Factura {
         this.clienteId = clienteId;
         this.empleadoId = empleadoId;
     }
+
+    public Factura(int facturaId, LocalDate toLocalDate, LocalTime toLocalTime, String cliente, String producto, String empleado, Double total) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
