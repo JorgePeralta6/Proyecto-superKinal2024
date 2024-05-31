@@ -76,7 +76,7 @@ public class MenuFacturasController implements Initializable {
                 agregarFacturas();
                 cargarDatos();
             }else{
-                editarFacturas();
+                agregarDetalleFacturas();
                 cargarDatos();
             }
         }else if(event.getSource() == btnVaciar){
@@ -347,8 +347,8 @@ public class MenuFacturasController implements Initializable {
             statement.setDate(1, Date.valueOf(LocalDate.now()));
             statement.setTime(2, Time.valueOf(LocalTime.now()));
             statement.setInt(3, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(4, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
-            statement.setInt(5, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.setInt(4, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.setInt(5, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -367,17 +367,13 @@ public class MenuFacturasController implements Initializable {
         }
     }
     
-    public void editarFacturas(){
+    public void agregarDetalleFacturas(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EditarDetalleFactura(?, ?, ?, ?, ?, ?)";
+            String sql = "call sp_AgregarDetalleFactura(?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfFacturaId.getText()));
-            statement.setDate(2, Date.valueOf(tfFecha.getText()));
-            statement.setTime(3, Time.valueOf(tfHora.getText()));
-            statement.setInt(4, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(5, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
-            statement.setInt(6, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.setInt(2, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());

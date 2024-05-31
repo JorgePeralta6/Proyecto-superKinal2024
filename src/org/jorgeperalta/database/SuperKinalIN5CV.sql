@@ -91,10 +91,10 @@ create table Empleados (
 	empleadoId int not null auto_increment,
     nombreEmpleado varchar (30) not null,
     apellidoEmpleado varchar (30) not null,
+    cargoId int not null,
     sueldo decimal (10, 2) not null,
     horaEntrada time not null,
     horaSalida time not null,
-    cargoId int not null,
     encargadoId int,
     primary key PK_empleadoId (empleadoId),
     constraint FK_encargadoId foreign key Empleados(encargadoId)

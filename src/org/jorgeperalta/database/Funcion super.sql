@@ -10,7 +10,7 @@ DELIMITER $$
     end$$
 DELIMITER ;
  
-DELIMITER $$
+DELIMITER $$		
 CREATE Function FN_precio(proId int) returns decimal(10,2) deterministic
 BEGIN
 	DECLARE precio int;

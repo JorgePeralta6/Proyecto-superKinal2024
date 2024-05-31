@@ -418,6 +418,8 @@ create procedure sp_editarDetalleCompra(in comId int, in fec date, in tot decima
 	commit;
     END $$
 DELIMITER ;
+call sp_listarDetalleCompra();
+call sp_editarDetalleCompra();
 -- DetalleCompra
 
 -- Empleados
@@ -492,13 +494,14 @@ DELIMITER $$
             insert into Facturas (fecha, hora, clienteId, empleadoId)values 
 				(fech, hor, cliId, empId);
                 set po = last_insert_id();
-                call sp_agregarDetalleFactura(proId, po);
-                update Productos
+                call sp_agregarDetalleFactura(po, proId);
+                 update Productos
                 set cantidadStock = cantidadStock -1
-                where productoId = proId;
+                 where productoId = proId;
 		END $$
 DELIMITER ;
 call sp_AgregarFacturas('2023-04-23', '8:00:00', 1, 1, 1);
+select * from Productos;
 
 DELIMITER $$
 create procedure sp_ListarFacturas ()
