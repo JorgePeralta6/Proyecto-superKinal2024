@@ -94,5 +94,35 @@ public class GenerarReporte {
             }
     }
     
+    public void generarProducto(int proId){
+            try{
+            
+                conexion = Conexion.getInstance().obtenerConexion();
+                Map<String, Object> parametros = new HashMap<>();
+                parametros.put("proId", proId);
+            
+                InputStream jasperPath = GenerarReporte.class.getResourceAsStream("/org/jorgeperalta/report/Producto.jasper");
+                JasperPrint reporte = JasperFillManager.fillReport(jasperPath, parametros, conexion);
+            
+                Stage reportStage = new Stage();
+            
+                JRViewerFX reportViewer = new JRViewerFX(reporte);
+            
+                Pane root = new Pane();
+            
+                root.getChildren().add(reportViewer);
+            
+                reportViewer.setPrefSize(1000, 800);
+            
+                Scene scene = new Scene(root);
+                reportStage.setScene(scene);
+                reportStage.setTitle("Producto");
+                reportStage.show();
+                    
+                    
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+    }
     
 }

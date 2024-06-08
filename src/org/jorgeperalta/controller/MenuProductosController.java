@@ -36,6 +36,7 @@ import org.jorgeperalta.dao.Conexion;
 import org.jorgeperalta.model.CategoriaProducto;
 import org.jorgeperalta.model.Distribuidor;
 import org.jorgeperalta.model.Producto;
+import org.jorgeperalta.report.GenerarReporte;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.utils.SuperKinalAlert;
 
@@ -54,7 +55,7 @@ public class MenuProductosController implements Initializable {
     private List<File> files = null;
 
     @FXML
-    Button btnRegresar, btnBuscar, btnCargar, btnGuardar, btnVaciar;
+    Button btnRegresar, btnBuscar, btnCargar, btnGuardar, btnVaciar, btnReporte;
 
     @FXML
     TableView tblProductos;
@@ -109,7 +110,9 @@ public class MenuProductosController implements Initializable {
                 }  
             }else if(event.getSource() == btnVaciar){
             vaciarCampos();
-                }
+            } else if(event.getSource() == btnReporte){
+                GenerarReporte.getInstance().generarProducto(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getProductoId());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             
