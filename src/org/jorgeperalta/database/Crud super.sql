@@ -783,3 +783,12 @@ delimiter ;
 select * from nivelesAcceso;
 
 select * from Usuarios;
+
+select * from Productos P
+where P.productoId = 3;
+
+select * from DetalleFactura DF
+join Productos P on DF.productoId = P.productoId
+join Facturas F on DF.facturaId = F.facturaId
+join Clientes C on F.clienteId = C.clienteId
+where F.facturaId = 47;
