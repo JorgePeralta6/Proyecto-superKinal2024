@@ -70,5 +70,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="btnVerFactura" layoutX="101.0" layoutY="659.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="88.0" text="VerFactura" />
    </children>
 </AnchorPane>

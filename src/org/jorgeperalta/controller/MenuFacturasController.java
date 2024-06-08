@@ -37,6 +37,7 @@ import org.jorgeperalta.model.Factura;
 import org.jorgeperalta.system.Main;
 import org.jorgeperalta.model.DetalleFactura;
 import org.jorgeperalta.model.Producto;
+import org.jorgeperalta.report.GenerarReporte;
 import org.jorgeperalta.utils.SuperKinalAlert;
 
 /**
@@ -53,7 +54,7 @@ public class MenuFacturasController implements Initializable {
     private static ResultSet resultset = null;
     
     @FXML
-    Button btnRegresar, btnGuardar, btnVaciar, btnEliminar, btnBuscar;
+    Button btnRegresar, btnGuardar, btnVaciar, btnEliminar, btnBuscar, btnVerFactura;
     
     @FXML
     TextField tfFacturaId, tfHora, tfTotal, tfFecha, tfFacturad;
@@ -101,6 +102,8 @@ public class MenuFacturasController implements Initializable {
                 colEmpleado.setCellValueFactory(new PropertyValueFactory<DetalleFactura, String>("Empleado"));
                 colTotal.setCellValueFactory(new PropertyValueFactory<DetalleFactura, Double>("total"));
             }
+        }else if(event.getSource() == btnVerFactura){
+            GenerarReporte.getInstance().generarFactura(((Factura)tblFacturas.getSelectionModel().getSelectedItem()).getFacturaId());
         }
     } 
     

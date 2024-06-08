@@ -3,12 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuFacturasController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuProductosController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuPromociones.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FormDistribuidoresView.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuCompras.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/utils/SuperKinalAlert.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoImportar.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoLogin.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuProductos.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/model/Producto.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoUsuarioView.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuClientes.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/FormComprasController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/report/GenerarReporte.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/FormUsuarioController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FormEmpleadosView.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuFacturasController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuPrincipalController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/FormUsuarioController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuComprasController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/model/DetalleCompra.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/dao/Conexion.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuTicketSoporte.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuCategoriaProductos.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuCargos.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuDistribuidores.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuEmpleadosController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/FondoMenuPrincipal.png</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/FormEmpleadosController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/image/lupa.png</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/report/Factura.jasper</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/dto/CategoriaProductoDTO.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/system/Main.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/model/DetalleFactura.java</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorios%20github/Proyecto-superKinal2024/src/org/jorgeperalta/controller/MenuPromocionesController.java</file>
